@@ -1,7 +1,7 @@
 {
   "name": "notiwind",
   "description": "A headless Vue 3 notification library to use with Tailwind CSS.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/index.js",
   "license": "MIT",
   "author": {
@@ -22,8 +22,7 @@
   "devDependencies": {
     "eslint": "^7.19.0",
     "@vue/compiler-sfc": "^3.0.5",
-    "eslint-plugin-vue": "^7.5.0",
-    "mitt": "^2.1.0"
+    "eslint-plugin-vue": "^7.5.0"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -31,6 +30,7 @@
   "keywords": [
     "vue",
     "vue3",
+    "vite",
     "vuejs",
     "tailwindcss",
     "tailwindui",

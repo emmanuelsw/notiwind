@@ -82,28 +82,31 @@
 </template>
 
 <script>
+// import { notify } from "notiwind"
+import { notify } from "../../src/index"
+
 export default {
   name: "App",
-  methods: {
-    onClickTop() {
-      this.$notify(
-        {
-          group: "top",
-          title: "Success",
-          text: "Your account was registered!"
-        },
-        4000
-      )
-    },
-    onClickBot() {
-      this.$notify(
-        {
-          group: "bottom",
-          title: "Error",
-          text: "Your email is already used!"
-        },
-        4000
-      )
+  setup() {
+    function onClickTop() {
+      notify({
+        group: "top",
+        title: "Success",
+        text: "Your account was registered!"
+      }, 4000)
+    }
+
+    function onClickBot() {
+      notify({
+        group: "bottom",
+        title: "Error",
+        text: "Your email is already used!"
+      }, 4000)
+    }
+
+    return {
+      onClickTop,
+      onClickBot
     }
   }
 }

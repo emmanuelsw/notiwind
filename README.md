@@ -1,7 +1,7 @@
 
 # Notiwind
 
-A headless Vue 3/Vite notification library to use with Tailwind CSS.
+A headless Vue 3 notification library to use with Tailwind CSS.
 This is a fork and port of [vue3-vt-notifications](https://github.com/killmenot/vue3-vt-notifications) created and modified by [killmenot](https://github.com/killmenot) to support Vue 3. Initially created by [sansil](https://github.com/sansil).
 
 ## 🌟 Features

@@ -13,7 +13,6 @@ export default {
       },
     },
   },
-
   provide() {
     return {
       ['context']: { group: this.group, position: this.position },

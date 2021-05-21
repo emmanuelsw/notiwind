@@ -1,6 +1,6 @@
 <script>
 import { TransitionGroup, h } from 'vue'
-import { state, removeNotification } from './notify.js'
+import { state, removeNotification } from './notify'
 
 export default {
   inject: {

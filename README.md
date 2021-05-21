@@ -1,23 +1,19 @@
 
 # Notiwind
 
-A headless Vue 3 notification library to use with Tailwind CSS.
-This is a fork and port of [vue3-vt-notifications](https://github.com/killmenot/vue3-vt-notifications) created and modified by [killmenot](https://github.com/killmenot) to support Vue 3.
+A headless Vue 3/Vite notification library to use with Tailwind CSS.
+This is a fork and port of [vue3-vt-notifications](https://github.com/killmenot/vue3-vt-notifications) created and modified by [killmenot](https://github.com/killmenot) to support Vue 3. Initially created by [sansil](https://github.com/sansil).
 
 ## 🌟 Features
 
+- Composition API support
 - 100% customizable
 - Create different groups of notifications
 - Built in transitions
 
-## 📝 TODO
-
-- Vite support
-- Composition API support
-
 ## 🤖 Demo
 
-[Live demo](https://codesandbox.io/s/vue-tailwind-notifications-forked-i74t0?file=/src/App.vue)
+[Live Preview](https://notiwind-demo.netlify.app)
 
 ## ⚡️ Installation
 
@@ -45,6 +41,8 @@ createApp(App)
 
 ## 🍞 How to use
 
+Add the notification components to your main layout or in `App.vue`:
+
 ```vue
 <NotificationGroup group="foo">
   <!-- Here put your notifications wrapper box -->
@@ -54,6 +52,30 @@ createApp(App)
     ...
   </Notification>
 </NotificationGroup>
+```
+
+Then, trigger notifications from your `.vue` files:
+
+###### Options API
+
+```javascript
+this.$notify({
+  group: "foo",
+  title: "Success",
+  text: "Your account was registered!"
+}, 2000) // 2s
+```
+
+###### Composition API
+
+```javascript
+import { notify } from "notiwind"
+
+notify({
+  group: "foo",
+  title: "Success",
+  text: "Your account was registered!"
+}, 4000) // 4s
 ```
 
 ### Basic example
@@ -328,30 +350,19 @@ Scope props:
 </Notification>
 ```
 
-## Using the library in Nuxt.js
+## TODO
 
-To get this library working in Nuxt.js you need to prepare a few things.
+* Improve transitions API
+* Add tests
 
-Create a new plugin in your Nuxt.js project `plugins/notiwind.js` and add the following:
+## Contributing
 
-```js
-import Vue from "vue"
-import Notifications from "notiwind"
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
-Vue.use(Notifications)
-```
+## License
 
-Now you need to add the plugin in your `nuxt.config.js` and add notiwind to the transpilation build step.
-
-Add the following lines in your `nuxt.config.js`:
-
-```js
-plugins: [
-  { src: "~/plugins/notiwind" },
-],
-build: {
-  transpile: [
-    "notiwind"
-  ],
-}
-```
+MIT

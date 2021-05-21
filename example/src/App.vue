@@ -93,7 +93,7 @@ export default {
           text: "Your account was registered!"
         },
         4000
-      );
+      )
     },
     onClickBot() {
       this.$notify(
@@ -103,10 +103,10 @@ export default {
           text: "Your email is already used!"
         },
         4000
-      );
+      )
     }
   }
-};
+}
 </script>
 
 <style>

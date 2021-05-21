@@ -1,0 +1,40 @@
+{
+  "name": "notiwind",
+  "description": "A headless Vue 3 notification library to use with Tailwind CSS.",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Emmanuel Deossa",
+    "url": "https://github.com/emmanuelsw"
+  },
+  "homepage": "https://github.com/emmanuelsw/notiwind",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:emmanuelsw/notiwind.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emmanuelsw/notiwind/issues"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "eslint-plugin-vue": "^7.5.0",
+    "mitt": "^2.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "vuejs",
+    "tailwindcss",
+    "tailwindui",
+    "notifications",
+    "toast"
+  ]
+}

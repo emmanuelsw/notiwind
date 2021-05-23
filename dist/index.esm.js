@@ -1,8 +1,10 @@
-<script>
-import { TransitionGroup, h } from 'vue'
-import { events } from './events'
+import { h, TransitionGroup } from 'vue';
 
-export default {
+function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i&&i.push(e)||n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&i.splice(i.indexOf(e)>>>0,1);},emit:function(t,e){(n.get(t)||[]).slice().map(function(n){n(e);}),(n.get("*")||[]).slice().map(function(n){n(t,e);});}}}
+
+const events = mitt();
+
+var script$1 = {
   inject: {
     context: { default: { group: '', position: 'top' } },
   },
@@ -67,24 +69,24 @@ export default {
     },
   },
   mounted() {
-    events.on('notify', this.add)
+    events.on('notify', this.add);
   },
   methods: {
     add({ notification, timeout}) {
-      const DEFAULT_TIMEOUT = 3000
+      const DEFAULT_TIMEOUT = 3000;
 
-      this.notifications.push(notification)
+      this.notifications.push(notification);
 
       setTimeout(() => {
-        this.remove(notification.id)
-      }, timeout || DEFAULT_TIMEOUT)
+        this.remove(notification.id);
+      }, timeout || DEFAULT_TIMEOUT);
     },
     close(id) {
-      this.$emit('close')
-      this.remove(id)
+      this.$emit('close');
+      this.remove(id);
     },
     remove(id) {
-      this.notifications.splice(this.notifications.findIndex(n => n.id === id), 1)
+      this.notifications.splice(this.notifications.findIndex(n => n.id === id), 1);
     }
   },
   render() {
@@ -112,5 +114,59 @@ export default {
       }
     )
   },
+};
+
+script$1.__file = "src/Notification.vue";
+
+var script = {
+  provide() {
+    return {
+      ['context']: { group: this.group, position: this.position },
+    }
+  },
+  props: {
+    group: {
+      type: String,
+      default: '',
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator(value) {
+        return ['top', 'bottom'].includes(value)
+      },
+    },
+  },
+  render() {
+    return this.$slots.default({
+      group: this.group,
+    })
+  },
+};
+
+script.__file = "src/NotificationGroup.vue";
+
+let count = 0;
+
+const generateId = () => {
+  return count++
+};
+
+const notify = (notification, timeout) => {
+  notification.id = generateId();
+  notification.group = notification.group || '';
+  events.emit('notify', { notification, timeout });
+};
+
+function install(app) {
+  app.config.globalProperties.$notify = notify;
+  app.component('Notification', script$1);
+  app.component('NotificationGroup', script);
 }
-</script>
+
+var index = {
+  install,
+};
+
+export default index;
+export { notify };

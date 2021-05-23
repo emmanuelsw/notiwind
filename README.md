@@ -1,15 +1,22 @@
 
 # Notiwind
 
+<a href="https://www.npmjs.com/package/notiwind">
+  <img src="https://img.shields.io/npm/v/notiwind.svg?color=41b883" alt="Npm Version">
+</a>
+<a href="https://github.com/emmanuelsw/notiwind/blob/master/LICENSE">
+  <img src="https://img.shields.io/badge/license-MIT-428F7E.svg" alt="License">
+</a>
+
 A headless Vue 3 notification library to use with Tailwind CSS.
 This is a fork and port of [vue3-vt-notifications](https://github.com/killmenot/vue3-vt-notifications) created and modified by [killmenot](https://github.com/killmenot) to support Vue 3. Initially created by [sansil](https://github.com/sansil).
 
 ## 🌟 Features
 
+- 100% Customizable
 - Composition API support
-- 100% customizable
 - Create different groups of notifications
-- Built in transitions
+- Tailwind's JIT support
 
 ## 🤖 Demo
 
@@ -27,7 +34,7 @@ or
 npm i notiwind
 ```
 
-You can then register Notifications as a Vue plugin.
+You can then register `Notifications` as a Vue plugin:
 
 ```js
 import { createApp } from 'vue'
@@ -80,7 +87,7 @@ notify({
 
 ### Basic example
 
-For example in your App.vue
+For example in your `App.vue`
 
 ```vue
 <NotificationGroup group="foo">
@@ -88,28 +95,32 @@ For example in your App.vue
     class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
   >
     <div class="w-full max-w-sm">
-      <Notification v-slot="{ notifications }">
+      <Notification
+        v-slot="{ notifications }"
+        enter="transform ease-out duration-300 transition"
+        enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+        enter-to="translate-y-0 opacity-100 sm:translate-x-0"
+        leave="transition ease-in duration-500"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
+        move="transition duration-500"
+        move-delay="delay-300"
+      >
         <div
           class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
           v-for="notification in notifications"
           :key="notification.id"
         >
           <div class="flex items-center justify-center w-12 bg-green-500">
-            <svg
-              class="w-6 h-6 text-white fill-current"
-              viewBox="0 0 40 40"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z"
-              />
+            <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
             </svg>
           </div>
 
           <div class="px-4 py-2 -mx-3">
             <div class="mx-3">
-              <span class="font-semibold text-green-500">{{notification.title}}</span>
-              <p class="text-sm text-gray-600">{{notification.text}}</p>
+              <span class="font-semibold text-green-500">{{ notification.title }}</span>
+              <p class="text-sm text-gray-600">{{ notification.text }}</p>
             </div>
           </div>
         </div>
@@ -119,7 +130,7 @@ For example in your App.vue
 </NotificationGroup>
 ```
 
-Then in any of your vue files:
+Then in any of your `.vue` files:
 
 ```javascript
 this.$notify({
@@ -129,11 +140,11 @@ this.$notify({
 }, 2000) // 2s
 ```
 
-The first argument is an object containing the data for the `Notification` layout, it important to specify the group where the notificatoins are going to be displayed, the second argument is the timeout. The default timeout is 3 seconds.
+The first argument is an object containing the data for the `Notification` element, it's important to specify the group where the notificatoins are going to be displayed, the second argument is the timeout. The default timeout is 3 seconds.
 
 ### Example with differents groups
 
-You can use `NotificationGroup` component to have different types of notifcations. For example, notifcations error messages in top center and generic app notifications in bottom-right corner.
+You can use the `NotificationGroup` component to have different types of notifications. For example, notifications error messages in top center and generic app notifications in bottom-right corner.
 
 ```vue
 <NotificationGroup group="error">
@@ -141,7 +152,17 @@ You can use `NotificationGroup` component to have different types of notifcation
     class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
   >
     <div class="w-full max-w-sm">
-      <Notification v-slot="{ notifications }">
+      <Notification
+        v-slot="{ notifications }"
+        enter="transform ease-out duration-300 transition"
+        enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+        enter-to="translate-y-0 opacity-100 sm:translate-x-0"
+        leave="transition ease-in duration-500"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
+        move="transition duration-500"
+        move-delay="delay-300"
+      >
         <div
           class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
           v-for="notification in notifications"
@@ -170,7 +191,17 @@ You can use `NotificationGroup` component to have different types of notifcation
     class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
   >
     <div class="w-full max-w-sm">
-      <Notification v-slot="{ notifications }">
+      <Notification
+        v-slot="{ notifications }"
+        enter="transform ease-out duration-300 transition"
+        enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+        enter-to="translate-y-0 opacity-100 sm:translate-x-0"
+        leave="transition ease-in duration-500"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
+        move="transition duration-500"
+        move-delay="delay-300"
+      >
         <div
           class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
           v-for="notification in notifications"
@@ -181,6 +212,7 @@ You can use `NotificationGroup` component to have different types of notifcation
               <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z"/>
             </svg>
           </div>
+
           <div class="px-4 py-2 -mx-3">
             <div class="mx-3">
               <span class="font-semibold text-blue-500">{{ notification.title }}Info</span>
@@ -194,7 +226,7 @@ You can use `NotificationGroup` component to have different types of notifcation
 </NotificationGroup>
 ```
 
-Then in any of your vue files:
+Then in any of your `.vue` files:
 
 ```javascript
 // Error notifcation
@@ -220,7 +252,17 @@ You can render different types of notifications in the same group using a condit
 <NotificationGroup group="foo">
   <div class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
     <div class="w-full max-w-sm">
-      <Notification v-slot="{notifications}">
+      <Notification
+        v-slot="{ notifications }"
+        enter="transform ease-out duration-300 transition"
+        enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+        enter-to="translate-y-0 opacity-100 sm:translate-x-0"
+        leave="transition ease-in duration-500"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
+        move="transition duration-500"
+        move-delay="delay-300"
+      >
         <div v-for="notification in notifications" :key="notification.id">
           <div
             v-if="notification.type === 'info'"
@@ -245,6 +287,7 @@ You can render different types of notifications in the same group using a condit
               </div>
             </div>
           </div>
+
           <div
             class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
             v-if="notification.type === 'warning'"
@@ -275,7 +318,7 @@ You can render different types of notifications in the same group using a condit
 </NotificationGroup>
 ```
 
-Then in any of your vue files:
+Then in any of your `.vue` files:
 
 ```javascript
 // Error notifcation
@@ -297,33 +340,52 @@ this.$notify({
 
 ## Props
 
-Props for **notification component**, all are opcional.
+##### Props for the `Notification` component, all are opcional.
 
-| Name                   | Type   | Default                                                                                                                                                                                                                                                                                                                                                                                                                      | Description                                    |
-| ---------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| maxNotifications       | Number | 10                                                                                                                                                                                                                                                                                                                                                                                                                           | Maximum notifications displayed simultaneously |
-| transitionGroupClasses | Object | `{enterActiveClassDelayed: "transform ease-out duration-300 transition delay-300", enterActiveClass: "transform ease-out duration-300 transition",enterFromClass: "translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4",enterToClass: "translate-y-0 opacity-100 sm:translate-x-0", leaveActiveClass: "transition ease-in duration-500", leaveFromClass: "opacity-100", leaveToClass: "opacity-0", moveClass: "transition duration-500 "}` | Classes for the transition-group component     |
+| Name             | Type   | Default    | Description                                     |
+| ---------------- | ------ | ---------- | ----------------------------------------------- |
+| maxNotifications | Number |     10     | Maximum notifications displayed simultaneously  |
+| enter            | String |     ""     | *enter-active-class* transition classes. Applied during the entire entering phase.            |
+| enterFrom        | String |     ""     | *enter-from-class* transition classes. Starting state for enter.           |
+| enterTo          | String |     ""     | *enter-to-class* transition classes. Ending state for enter.           |
+| leave            | String |     ""     | *leave-active-class* transition classes. Applied during the entire leaving phase.           |
+| leaveFrom        | String |     ""     | *leave-from-class* transition classes. Starting state for leave.            |
+| leaveTo          | String |     ""     | *leave-to-class* transition classes. Ending state for leave.           |
+| move             | String |     ""     | *move-class* transition classes. Added when items are changing positions.           |
+| moveDelay        | String |     ""     | Delay between the position change. `delay-300` recommended value.          |
 
-Props for **notification group component**, all are opcional.
+Check the Vue docs to know more about [Enter & Leave Transitions](https://v3.vuejs.org/guide/transitions-enterleave.html#transition-classes) and [List Move Transitions](https://v3.vuejs.org/guide/transitions-list.html#list-move-transitions).
+
+##### Props for `NotificationGroup` component, all are opcional.
 
 | Name     | Type   | Description                             |
 | -------- | ------ | --------------------------------------- |
-| position | String | "bottom" or "top are the posible values |
-| group    | String | Name of the group of notifications      |
+| position | String | "bottom" or "top" are the posible values. |
+| group    | String | Name of the group of notifications.      |
 
-## Defualt scoped slot
+## Defualt scoped slots
 
 Scope props:
 
 | Name          | Type     | Description                                                              |
 | ------------- | -------- | ------------------------------------------------------------------------ |
-| notifications | Array    | Array of notification object                                             |
-| close         | Function | when called closes the notification. Expect the notification id as input |
+| notifications | Array    | Array of notification objects.                                             |
+| close         | Function | Closes the notification. Expects the notification ID as parameter |
 
 ### Example
 
 ```vue
-<Notification v-slot="{ notifications, close }">
+<Notification
+  v-slot="{ notifications, close }"
+  enter="transform ease-out duration-300 transition"
+  enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+  enter-to="translate-y-0 opacity-100 sm:translate-x-0"
+  leave="transition ease-in duration-500"
+  leave-from="opacity-100"
+  leave-to="opacity-0"
+  move="transition duration-500"
+  move-delay="delay-300"
+>
   <div
     v-for="notification in notifications"
     :key="notification.id"
@@ -352,7 +414,6 @@ Scope props:
 
 ## TODO
 
-* Improve transitions API
 * Add tests
 
 ## Contributing

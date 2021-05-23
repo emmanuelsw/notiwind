@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
-// import Notifications from "notiwind"
-import Notifications from '../../src/index'
+import Notifications from '../../dist/index.esm'
 import App from './App.vue'
 import './index.css'
 

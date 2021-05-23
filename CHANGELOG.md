@@ -1,5 +1,13 @@
 # CHANGELOG
 
+<a name="1.2.0"></a>
+### 1.2.0 (2021-05-23)
+
+* Include ESM and CommonJS builds
+* Improve notification event system
+* Expose the transition classes as props to support Tailwind's JIT
+* Fix package import issues
+
 <a name="1.0.1"></a>
 ### 1.0.1 (2021-05-20)
 

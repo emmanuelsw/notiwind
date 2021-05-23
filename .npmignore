@@ -1,0 +1,10 @@
+example
+src
+npm-debug.log
+yarn-error.log
+dist/src/
+.github
+.yarn.lock
+*.log
+.eslintrc
+.gitignore

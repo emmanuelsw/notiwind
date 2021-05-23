@@ -1,5 +1,10 @@
 <script>
 export default {
+  provide() {
+    return {
+      ['context']: { group: this.group, position: this.position },
+    }
+  },
   props: {
     group: {
       type: String,
@@ -12,11 +17,6 @@ export default {
         return ['top', 'bottom'].includes(value)
       },
     },
-  },
-  provide() {
-    return {
-      ['context']: { group: this.group, position: this.position },
-    }
   },
   render() {
     return this.$slots.default({

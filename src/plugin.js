@@ -6,8 +6,4 @@ export function install(app) {
   app.config.globalProperties.$notify = notify
   app.component('Notification', Notification)
   app.component('NotificationGroup', NotificationGroup)
-
-  // Compatibility with the old component names
-  app.component('notification', Notification)
-  app.component('notificationGroup', NotificationGroup)
 }

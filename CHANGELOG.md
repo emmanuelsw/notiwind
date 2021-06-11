@@ -4,6 +4,7 @@
 ### 1.2.1 (2021-06-11)
 
 * Add compatibility with the old component names
+* Update dependencies
 
 <a name="1.2.0"></a>
 ### 1.2.0 (2021-05-23)

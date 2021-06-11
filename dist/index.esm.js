@@ -158,10 +158,16 @@ const notify = (notification, timeout) => {
   events.emit('notify', { notification, timeout });
 };
 
+/* eslint-disable vue/component-definition-name-casing */
+
 function install(app) {
   app.config.globalProperties.$notify = notify;
   app.component('Notification', script$1);
   app.component('NotificationGroup', script);
+
+  // Compatibility with the old component names
+  app.component('notification', script$1);
+  app.component('notificationGroup', script);
 }
 
 var index = {

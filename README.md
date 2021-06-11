@@ -4,6 +4,9 @@
 <a href="https://www.npmjs.com/package/notiwind">
   <img src="https://img.shields.io/npm/v/notiwind.svg?color=41b883" alt="Npm Version">
 </a>
+<a href="https://bundlephobia.com/package/notiwind">
+  <img src="https://img.shields.io/bundlephobia/minzip/notiwind" alt="Size">
+</a>
 <a href="https://github.com/emmanuelsw/notiwind/blob/master/LICENSE">
   <img src="https://img.shields.io/badge/license-MIT-428F7E.svg" alt="License">
 </a>

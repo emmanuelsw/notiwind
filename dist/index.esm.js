@@ -174,5 +174,4 @@ var index = {
   install,
 };
 
-export default index;
-export { notify };
+export { index as default, notify };

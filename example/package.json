@@ -8,14 +8,14 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.0.5"
+    "vue": "^3.2.22"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.2.2",
-    "@vue/compiler-sfc": "^3.0.5",
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.15",
-    "tailwindcss": "^2.1.2",
-    "vite": "^2.3.3"
+    "@vitejs/plugin-vue": "^1.9.4",
+    "@vue/compiler-sfc": "^3.2.22",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19",
+    "vite": "^2.6.14"
   }
 }

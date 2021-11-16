@@ -1,7 +1,7 @@
 {
   "name": "notiwind",
   "description": "A headless Vue 3 notification library to use with Tailwind CSS.",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "dist/index.common.js",
   "module": "dist/index.esm.js",
   "license": "MIT",
@@ -22,15 +22,15 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.4",
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@vue/compiler-sfc": "^3.2.11",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^7.17.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@vue/compiler-sfc": "^3.2.22",
+    "eslint": "^8.2.0",
+    "eslint-plugin-vue": "^8.0.3",
     "mitt": "^3.0.0",
-    "rollup": "^2.56.3",
+    "rollup": "^2.60.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-vue": "^6.0.0"
   },

@@ -178,5 +178,5 @@ var index = {
   install,
 };
 
-exports['default'] = index;
+exports["default"] = index;
 exports.notify = notify;

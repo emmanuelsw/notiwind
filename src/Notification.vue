@@ -1,6 +1,7 @@
 <script>
 import { TransitionGroup, h } from 'vue'
 import { events } from './events'
+import { eventsType, positions } from './constants'
 
 export default {
   inject: {
@@ -44,7 +45,7 @@ export default {
       default: ''
     }
   },
-  emits: ['close'],
+  emits: [eventsType.close],
   data() {
     return {
       notifications: [],
@@ -52,7 +53,7 @@ export default {
   },
   computed: {
     sortedNotifications() {
-      if (this.context.position === 'bottom') {
+      if (this.context.position === positions.bottom) {
         return [...this.notificationsByGroup]
           .slice(0, this.maxNotifications)
       }
@@ -65,9 +66,12 @@ export default {
     notificationsByGroup() {
       return this.notifications.filter((n) => n.group === this.context.group)
     },
+    getEnterActiveClass() {
+      return `${this.enter} ${this.notificationsByGroup?.length > 1 ? this.moveDelay : ''}`
+    }
   },
   mounted() {
-    events.on('notify', this.add)
+    events.on(eventsType.notify, this.add)
   },
   methods: {
     add({ notification, timeout}) {
@@ -91,10 +95,7 @@ export default {
     return h(
       TransitionGroup,
       {
-        'enter-active-class':
-          this.notificationsByGroup.length > 1
-            ? [this.enter, this.moveDelay].join(' ')
-            : this.enter,
+        'enter-active-class': this.getEnterActiveClass,
         'enter-from-class': this.enterFrom,
         'enter-to-class': this.enterTo,
         'leave-active-class': this.leave,

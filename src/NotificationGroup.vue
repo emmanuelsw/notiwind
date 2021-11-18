@@ -1,4 +1,5 @@
 <script>
+import { positions } from './constants'
 export default {
   provide() {
     return {
@@ -12,9 +13,9 @@ export default {
     },
     position: {
       type: String,
-      default: 'top',
+      default: positions.top,
       validator(value) {
-        return ['top', 'bottom'].includes(value)
+        return [positions.top, positions.bottom].includes(value)
       },
     },
   },

@@ -1,4 +1,5 @@
 import { events } from './events'
+import { eventsType } from './constants'
 
 let count = 0
 
@@ -9,5 +10,5 @@ const generateId = () => {
 export const notify = (notification, timeout) => {
   notification.id = generateId()
   notification.group = notification.group || ''
-  events.emit('notify', { notification, timeout })
+  events.emit(eventsType.notify, { notification, timeout })
 }

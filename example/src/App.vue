@@ -20,7 +20,7 @@
         <div class="w-full max-w-sm">
           <Notification
             v-slot="{ notifications, close }"
-            enter="transform ease-out duration-300 transition"
+            enter="ease-out duration-300 transition"
             enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
             enter-to="translate-y-0 opacity-100 sm:translate-x-0"
             leave="transition ease-in duration-500"
@@ -36,7 +36,7 @@
             >
               <div class="p-4">
                 <div class="flex items-start">
-                  <div class="flex-shrink-0">
+                  <div class="shrink-0">
                     <svg
                       class="w-6 h-6 text-green-400"
                       xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@
                       {{ notification.text }}
                     </p>
                   </div>
-                  <div class="flex flex-shrink-0 ml-4">
+                  <div class="flex ml-4 shrink-0">
                     <button
                       class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                       @click="close(notification.id)"
@@ -98,7 +98,7 @@
         <div class="w-full max-w-sm">
           <Notification
             v-slot="{ notifications }"
-            enter="transform ease-out duration-300 transition"
+            enter="ease-out duration-300 transition"
             enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
             enter-to="translate-y-0 opacity-100 sm:translate-x-0"
             leave="transition ease-in duration-500"

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+<a name="1.2.5"></a>
+
+### 1.2.5 (2022-01-24)
+
+- Update core and example dependencies
+- Update example to use Tailwind 3.0
+- Remove @vue/compiler-sfc (as of vue 3.2.13+ and @vitejs/plugin-vue 1.9.0+ is no longer required as a peer dependency)
+
 <a name="1.2.4"></a>
 
 ### 1.2.4 (2021-11-16)

@@ -4,6 +4,7 @@
   "version": "1.2.5",
   "main": "dist/index.common.js",
   "module": "dist/index.esm.js",
+  "types": "dist/notiwind.d.ts",
   "license": "MIT",
   "author": {
     "name": "Emmanuel Deossa",

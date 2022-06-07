@@ -69,6 +69,7 @@ export default {
   },
   mounted() {
     events.on('notify', this.add)
+    events.on('close', this.remove)
   },
   methods: {
     add({ notification, timeout}) {
@@ -76,7 +77,6 @@ export default {
 
       this.notifications.push(notification)
 
-      setTimeout(() => {
       this.timeouts[notification.id] = setTimeout(() => {
         this.remove(notification.id)
       }, timeout || DEFAULT_TIMEOUT)

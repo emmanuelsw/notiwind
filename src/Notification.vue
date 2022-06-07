@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       notifications: [],
+      timeouts: {},
     }
   },
   computed: {
@@ -76,6 +77,7 @@ export default {
       this.notifications.push(notification)
 
       setTimeout(() => {
+      this.timeouts[notification.id] = setTimeout(() => {
         this.remove(notification.id)
       }, timeout || DEFAULT_TIMEOUT)
     },
@@ -85,6 +87,8 @@ export default {
     },
     remove(id) {
       this.notifications.splice(this.notifications.findIndex(n => n.id === id), 1)
+
+      clearTimeout(this.timeouts[id])
     }
   },
   render() {

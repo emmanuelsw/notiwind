@@ -1,5 +1,14 @@
 # CHANGELOG
 
+<a name="1.2.6"></a>
+
+### 1.2.6 (2022-06-08)
+
+- Export `NotificationGroup` and `Notification` components ([#26](https://github.com/emmanuelsw/notiwind/pull/26)). Thanks [@Jimjam89](https://github.com/Jimjam89)!
+- Update notify() to return a function allowing the notification to be closed programmatically ([#25](https://github.com/emmanuelsw/notiwind/pull/25)). Thanks [@Jimjam89](https://github.com/Jimjam89)!
+- Fix bug where a timeout of a dismissed notification can close a new notification prematurely ([#25](https://github.com/emmanuelsw/notiwind/pull/25)). Thanks [@Jimjam89](https://github.com/Jimjam89)!
+- Update core and example dependencies
+
 <a name="1.2.5"></a>
 
 ### 1.2.5 (2022-01-24)

@@ -184,5 +184,7 @@ var index = {
   install,
 };
 
+exports.Notification = script$1;
+exports.NotificationGroup = script;
 exports["default"] = index;
 exports.notify = notify;

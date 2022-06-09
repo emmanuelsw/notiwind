@@ -180,4 +180,4 @@ var index = {
   install,
 };
 
-export { index as default, notify };
+export { script$1 as Notification, script as NotificationGroup, index as default, notify };

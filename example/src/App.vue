@@ -140,33 +140,23 @@
   </div>
 </template>
 
-<script>
-import { notify } from "../../dist/index.esm"
+<script setup>
+import { notify, Notification, NotificationGroup } from "../../dist/index.esm"
 
-export default {
-  name: "App",
-  setup() {
-    function onClickTop() {
-      notify({
-        group: "top",
-        title: "Success",
-        text: "Your account was created 👌"
-      }, 4000)
-    }
+function onClickTop() {
+  notify({
+    group: "top",
+    title: "Success",
+    text: "Your account was created 👌"
+  }, 4000)
+}
 
-    function onClickBot() {
-      notify({
-        group: "bottom",
-        title: "Error",
-        text: "Invalid username or password!"
-      }, 4000)
-    }
-
-    return {
-      onClickTop,
-      onClickBot
-    }
-  }
+function onClickBot() {
+  notify({
+    group: "bottom",
+    title: "Error",
+    text: "Invalid username or password!"
+  }, 4000)
 }
 </script>
 

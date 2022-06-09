@@ -10,4 +10,6 @@ export const notify = (notification, timeout) => {
   notification.id = generateId()
   notification.group = notification.group || ''
   events.emit('notify', { notification, timeout })
+
+  return () => events.emit('close', notification.id)
 }

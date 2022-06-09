@@ -50,6 +50,7 @@ var script$1 = {
   data() {
     return {
       notifications: [],
+      timeouts: {},
     }
   },
   computed: {
@@ -70,6 +71,7 @@ var script$1 = {
   },
   mounted() {
     events.on('notify', this.add);
+    events.on('close', this.remove);
   },
   methods: {
     add({ notification, timeout}) {
@@ -77,7 +79,7 @@ var script$1 = {
 
       this.notifications.push(notification);
 
-      setTimeout(() => {
+      this.timeouts[notification.id] = setTimeout(() => {
         this.remove(notification.id);
       }, timeout || DEFAULT_TIMEOUT);
     },
@@ -87,6 +89,8 @@ var script$1 = {
     },
     remove(id) {
       this.notifications.splice(this.notifications.findIndex(n => n.id === id), 1);
+
+      clearTimeout(this.timeouts[id]);
     }
   },
   render() {
@@ -156,6 +160,8 @@ const notify = (notification, timeout) => {
   notification.id = generateId();
   notification.group = notification.group || '';
   events.emit('notify', { notification, timeout });
+
+  return () => events.emit('close', notification.id)
 };
 
 /* eslint-disable vue/component-definition-name-casing */

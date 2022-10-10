@@ -22,20 +22,20 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@vue/compiler-sfc": "^3.2.37",
-    "eslint": "^8.17.0",
-    "eslint-plugin-vue": "^9.1.0",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "@rollup/plugin-commonjs": "^23.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@vue/compiler-sfc": "^3.2.40",
+    "eslint": "^8.25.0",
+    "eslint-plugin-vue": "^9.6.0",
     "mitt": "^3.0.0",
-    "rollup": "^2.75.6",
+    "rollup": "^2.79.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-vue": "^6.0.0"
   },
   "peerDependencies": {
-    "vue": "^3.2.37"
+    "vue": "^3.2.40"
   },
   "keywords": [
     "vue",

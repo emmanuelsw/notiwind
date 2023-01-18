@@ -1,28 +1,24 @@
-<script>
-export default {
-  provide() {
-    return {
-      ['context']: { group: this.group, position: this.position },
-    }
-  },
-  props: {
-    group: {
-      type: String,
-      default: '',
-    },
-    position: {
-      type: String,
-      default: 'top',
-      validator(value) {
-        return ['top', 'bottom'].includes(value)
-      },
-    },
-  },
-  render() {
-    return this.$slots.default({
-      group: this.group,
-    })
-  },
+<script setup lang="ts">
+import { provide } from "vue";
+import { CONTEXT_KEY } from "./constants";
+import type { Context } from "./types";
+
+export interface Props {
+  group?: string;
+  position?: "top" | "bottom";
 }
+
+const props = withDefaults(defineProps<Props>(), {
+  group: "",
+  position: "top",
+});
+
+provide<Context>(CONTEXT_KEY, {
+  group: props.group,
+  position: props.position,
+});
 </script>
 
+<template>
+  <slot :group="group"></slot>
+</template>

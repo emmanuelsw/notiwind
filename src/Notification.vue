@@ -1,120 +1,106 @@
-<script>
-import { TransitionGroup, h } from 'vue'
-import { events } from './events'
+<script setup lang="ts">
+import { computed, inject, onMounted, reactive, TransitionGroup } from "vue";
+import { CONTEXT_KEY } from "./constants";
+import events from "./events";
+import type { Context, Notification } from "./types";
 
-export default {
-  inject: {
-    context: { default: { group: '', position: 'top' } },
-  },
-  props: {
-    maxNotifications: {
-      type: Number,
-      default: 10,
-    },
-    enter: {
-      type: String,
-      default: ''
-    },
-    enterFrom: {
-      type: String,
-      default: ''
-    },
-    enterTo: {
-      type: String,
-      default: ''
-    },
-    leave: {
-      type: String,
-      default: ''
-    },
-    leaveFrom: {
-      type: String,
-      default: ''
-    },
-    leaveTo: {
-      type: String,
-      default: ''
-    },
-    move: {
-      type: String,
-      default: ''
-    },
-    moveDelay: {
-      type: String,
-      default: ''
-    }
-  },
-  emits: ['close'],
-  data() {
-    return {
-      notifications: [],
-      timeouts: {},
-    }
-  },
-  computed: {
-    sortedNotifications() {
-      if (this.context.position === 'bottom') {
-        return [...this.notificationsByGroup]
-          .slice(0, this.maxNotifications)
-      }
-
-      // if not bottom reverse the array
-      return [...this.notificationsByGroup]
-        .reverse()
-        .slice(0, this.maxNotifications)
-    },
-    notificationsByGroup() {
-      return this.notifications.filter((n) => n.group === this.context.group)
-    },
-  },
-  mounted() {
-    events.on('notify', this.add)
-    events.on('close', this.remove)
-  },
-  methods: {
-    add({ notification, timeout}) {
-      const DEFAULT_TIMEOUT = 3000
-
-      this.notifications.push(notification)
-
-      this.timeouts[notification.id] = setTimeout(() => {
-        this.remove(notification.id)
-      }, timeout || DEFAULT_TIMEOUT)
-    },
-    close(id) {
-      this.$emit('close')
-      this.remove(id)
-    },
-    remove(id) {
-      this.notifications.splice(this.notifications.findIndex(n => n.id === id), 1)
-
-      clearTimeout(this.timeouts[id])
-    }
-  },
-  render() {
-    return h(
-      TransitionGroup,
-      {
-        'enter-active-class':
-          this.notificationsByGroup.length > 1
-            ? [this.enter, this.moveDelay].join(' ')
-            : this.enter,
-        'enter-from-class': this.enterFrom,
-        'enter-to-class': this.enterTo,
-        'leave-active-class': this.leave,
-        'leave-from-class': this.leaveFrom,
-        'leave-to-class': this.leaveTo,
-        'move-class': this.move,
-      },
-      {
-        default: () => {
-          return this.$slots.default({
-            notifications: this.sortedNotifications,
-            close: this.close,
-          })
-        }
-      }
-    )
-  },
+export interface Props {
+  maxNotifications?: number;
+  enter?: string;
+  enterFrom?: string;
+  enterTo?: string;
+  leave?: string;
+  leaveFrom?: string;
+  leaveTo?: string;
+  move?: string;
+  moveDelay?: string;
 }
+
+interface State {
+  notifications: Notification[];
+  timeouts: Record<string, number>;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  maxNotifications: 10,
+  enter: "",
+  enterFrom: "",
+  enterTo: "",
+  leave: "",
+  leaveFrom: "",
+  leaveTo: "",
+  move: "",
+  moveDelay: "",
+});
+
+const emit = defineEmits<{ (e: "close"): void }>();
+
+const context = inject<Context>(CONTEXT_KEY) as Context;
+const state = reactive<State>({ notifications: [], timeouts: {} });
+
+const notificationsByGroup = computed(() =>
+  state.notifications.filter((n) => n.group === context.group)
+);
+const sortedNotifications = computed(() => {
+  if (context.position === "bottom") {
+    return [...notificationsByGroup.value].slice(0, props.maxNotifications);
+  }
+
+  return [...notificationsByGroup.value]
+    .reverse()
+    .slice(0, props.maxNotifications);
+});
+
+const remove = (id: Notification["id"]) => {
+  state.notifications.splice(
+    state.notifications.findIndex((n) => n.id === id),
+    1
+  );
+
+  clearTimeout(state.timeouts[id]);
+};
+
+const add = ({
+  notification,
+  timeout,
+}: {
+  notification: Notification;
+  timeout: number;
+}) => {
+  const DEFAULT_TIMEOUT = 3000;
+
+  state.notifications.push(notification);
+
+  state.timeouts[notification.id] = window.setTimeout(() => {
+    remove(notification.id);
+  }, timeout || DEFAULT_TIMEOUT);
+};
+
+const close = (id: Notification["id"]) => {
+  emit("close");
+  remove(id);
+};
+
+onMounted(() => {
+  events.on("notify", add);
+  events.on("close", remove);
+});
 </script>
+
+<template>
+  <TransitionGroup
+    :enter-active-class="
+      notificationsByGroup.length > 1
+        ? [props.enter, props.moveDelay].join(' ')
+        : props.enter
+    "
+    :enter-from-class="props.enterFrom"
+    :enter-to-class="props.enterTo"
+    :leave-active-class="props.leave"
+    :leave-from-class="props.leaveFrom"
+    :leave-to-class="props.leaveTo"
+    :move-class="props.move"
+  >
+    <slot :notifications="sortedNotifications" :close="close"></slot>
+  </TransitionGroup>
+</template>

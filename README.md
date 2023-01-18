@@ -415,6 +415,47 @@ Scope props:
 </Notification>
 ```
 
+## Typescript
+
+Typed notifications supported using the Composition API only.
+
+```typescript
+// notiwind.ts
+import {
+  createNotifier,
+  NotificationGroup,
+  defineNotificationComponent,
+} from "notiwind";
+
+export type NotificationSchema = {
+  title: string;
+  text: string;
+};
+
+export const notify = createNotifier<NotificationSchema>();
+export const Notification = defineNotificationComponent<NotificationSchema>();
+export { NotificationGroup };
+```
+
+```vue
+<script setup lang="ts">
+  import { notify, Notification, NotificationGroup } from "./notiwind.ts";
+
+  notify({
+    title: "title",
+    text: "text",
+  }, 4000);
+</script>
+
+<template>
+<NotificationGroup>
+  <Notification v-slot="{ notifications }">
+   <!-- Here you have typed `notifications` -->
+  </Notification>
+</NotificationGroup>
+</template>
+```
+
 ## TODO
 
 * Add tests

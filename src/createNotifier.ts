@@ -10,8 +10,9 @@ const generateId = () => {
 
 type UserNotification<T extends NotificationSchema> = Omit<
   Notification<T>,
-  "id"
->;
+  "id" | "group"
+> &
+  Partial<Pick<Notification<T>, "group">>;
 
 const createNotifier = <T extends NotificationSchema>() => {
   return (notification: UserNotification<T>, timeout: number) => {

@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import mitt from "mitt";
 import { Notification } from "./types";
 

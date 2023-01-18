@@ -2,9 +2,13 @@
   "name": "notiwind",
   "description": "A headless Vue 3 notification library to use with Tailwind CSS.",
   "version": "1.2.6",
-  "main": "dist/notiwind.js",
-  "module": "dist/notiwind.mjs",
+  "main": "dist/index.common.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
   "license": "MIT",
   "author": {
     "name": "Emmanuel Deossa",

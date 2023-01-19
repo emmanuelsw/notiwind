@@ -2,7 +2,7 @@ import { Notification } from "./types";
 declare type Events = {
     notify: {
         notification: Notification;
-        timeout: number;
+        timeout?: number;
     };
     close: number;
 };

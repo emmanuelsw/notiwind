@@ -81,7 +81,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     remove: (id: Notification["id"]) => void;
     add: ({ notification, timeout, }: {
         notification: Notification;
-        timeout: number;
+        timeout?: number | undefined;
     }) => void;
     close: (id: Notification["id"]) => void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "close"[], "close", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{

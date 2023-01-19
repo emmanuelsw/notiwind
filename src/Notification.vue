@@ -65,7 +65,7 @@ const add = ({
   timeout,
 }: {
   notification: Notification;
-  timeout: number;
+  timeout?: number;
 }) => {
   const DEFAULT_TIMEOUT = 3000;
 

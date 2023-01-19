@@ -1,10 +1,11 @@
 import { Notification, NotificationSchema } from "./types";
 import events from "./events";
 
-const count = 0;
+let count = 0;
 
 const generateId = () => {
-  const id = count + 1;
+  const id = count;
+  count += 1;
   return id;
 };
 

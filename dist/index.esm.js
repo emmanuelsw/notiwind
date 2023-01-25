@@ -1,183 +1,100 @@
-import { h, TransitionGroup } from 'vue';
-
-function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
-
-const events = mitt();
-
-var script$1 = {
-  inject: {
-    context: { default: { group: '', position: 'top' } },
-  },
+import h from "mitt";
+import { defineComponent as f, inject as E, reactive as F, computed as m, onMounted as G, openBlock as w, createBlock as C, TransitionGroup as D, unref as p, withCtx as I, renderSlot as T, provide as U, h as $ } from "vue";
+const c = h();
+let d = 0;
+const B = () => {
+  const o = d;
+  return d += 1, o;
+}, g = () => (o, n) => {
+  const t = {
+    ...o,
+    id: B(),
+    group: o.group || ""
+  };
+  return c.emit("notify", { notification: t, timeout: n }), () => c.emit("close", t.id);
+}, N = "context", u = /* @__PURE__ */ f({
+  __name: "Notification",
   props: {
-    maxNotifications: {
-      type: Number,
-      default: 10,
-    },
-    enter: {
-      type: String,
-      default: ''
-    },
-    enterFrom: {
-      type: String,
-      default: ''
-    },
-    enterTo: {
-      type: String,
-      default: ''
-    },
-    leave: {
-      type: String,
-      default: ''
-    },
-    leaveFrom: {
-      type: String,
-      default: ''
-    },
-    leaveTo: {
-      type: String,
-      default: ''
-    },
-    move: {
-      type: String,
-      default: ''
-    },
-    moveDelay: {
-      type: String,
-      default: ''
-    }
+    maxNotifications: { default: 10 },
+    enter: { default: "" },
+    enterFrom: { default: "" },
+    enterTo: { default: "" },
+    leave: { default: "" },
+    leaveFrom: { default: "" },
+    leaveTo: { default: "" },
+    move: { default: "" },
+    moveDelay: { default: "" }
   },
-  emits: ['close'],
-  data() {
-    return {
-      notifications: [],
-      timeouts: {},
-    }
-  },
-  computed: {
-    sortedNotifications() {
-      if (this.context.position === 'bottom') {
-        return [...this.notificationsByGroup]
-          .slice(0, this.maxNotifications)
-      }
-
-      // if not bottom reverse the array
-      return [...this.notificationsByGroup]
-        .reverse()
-        .slice(0, this.maxNotifications)
-    },
-    notificationsByGroup() {
-      return this.notifications.filter((n) => n.group === this.context.group)
-    },
-  },
-  mounted() {
-    events.on('notify', this.add);
-    events.on('close', this.remove);
-  },
-  methods: {
-    add({ notification, timeout}) {
-      const DEFAULT_TIMEOUT = 3000;
-
-      this.notifications.push(notification);
-
-      this.timeouts[notification.id] = setTimeout(() => {
-        this.remove(notification.id);
-      }, timeout || DEFAULT_TIMEOUT);
-    },
-    close(id) {
-      this.$emit('close');
-      this.remove(id);
-    },
-    remove(id) {
-      this.notifications.splice(this.notifications.findIndex(n => n.id === id), 1);
-
-      clearTimeout(this.timeouts[id]);
-    }
-  },
-  render() {
-    return h(
-      TransitionGroup,
-      {
-        'enter-active-class':
-          this.notificationsByGroup.length > 1
-            ? [this.enter, this.moveDelay].join(' ')
-            : this.enter,
-        'enter-from-class': this.enterFrom,
-        'enter-to-class': this.enterTo,
-        'leave-active-class': this.leave,
-        'leave-from-class': this.leaveFrom,
-        'leave-to-class': this.leaveTo,
-        'move-class': this.move,
-      },
-      {
-        default: () => {
-          return this.$slots.default({
-            notifications: this.sortedNotifications,
-            close: this.close,
-          })
-        }
-      }
-    )
-  },
-};
-
-script$1.__file = "src/Notification.vue";
-
-var script = {
-  provide() {
-    return {
-      ['context']: { group: this.group, position: this.position },
-    }
-  },
+  emits: ["close"],
+  setup(o, { emit: n }) {
+    const t = o, r = E(N), i = F({ notifications: [], timeouts: {} }), a = m(
+      () => i.notifications.filter((e) => e.group === r.group)
+    ), _ = m(() => r.position === "bottom" ? [...a.value].slice(0, t.maxNotifications) : [...a.value].reverse().slice(0, t.maxNotifications)), l = (e) => {
+      i.notifications.splice(
+        i.notifications.findIndex((s) => s.id === e),
+        1
+      ), clearTimeout(i.timeouts[e]);
+    }, x = ({
+      notification: e,
+      timeout: s
+    }) => {
+      i.notifications.push(e), i.timeouts[e.id] = window.setTimeout(() => {
+        l(e.id);
+      }, s || 3e3);
+    }, y = (e) => {
+      n("close"), l(e);
+    };
+    return G(() => {
+      c.on("notify", x), c.on("close", l);
+    }), (e, s) => (w(), C(D, {
+      "enter-active-class": p(a).length > 1 ? [t.enter, t.moveDelay].join(" ") : t.enter,
+      "enter-from-class": t.enterFrom,
+      "enter-to-class": t.enterTo,
+      "leave-active-class": t.leave,
+      "leave-from-class": t.leaveFrom,
+      "leave-to-class": t.leaveTo,
+      "move-class": t.move
+    }, {
+      default: I(() => [
+        T(e.$slots, "default", {
+          notifications: p(_),
+          close: y
+        })
+      ]),
+      _: 3
+    }, 8, ["enter-active-class", "enter-from-class", "enter-to-class", "leave-active-class", "leave-from-class", "leave-to-class", "move-class"]));
+  }
+}), v = /* @__PURE__ */ f({
+  __name: "NotificationGroup",
   props: {
-    group: {
-      type: String,
-      default: '',
-    },
-    position: {
-      type: String,
-      default: 'top',
-      validator(value) {
-        return ['top', 'bottom'].includes(value)
-      },
-    },
+    group: { default: "" },
+    position: { default: "top" }
   },
-  render() {
-    return this.$slots.default({
-      group: this.group,
-    })
-  },
-};
-
-script.__file = "src/NotificationGroup.vue";
-
-let count = 0;
-
-const generateId = () => {
-  return count++
-};
-
-const notify = (notification, timeout) => {
-  notification.id = generateId();
-  notification.group = notification.group || '';
-  events.emit('notify', { notification, timeout });
-
-  return () => events.emit('close', notification.id)
-};
-
-/* eslint-disable vue/component-definition-name-casing */
-
-function install(app) {
-  app.config.globalProperties.$notify = notify;
-  app.component('Notification', script$1);
-  app.component('NotificationGroup', script);
-
-  // Compatibility with the old component names
-  app.component('notification', script$1);
-  app.component('notificationGroup', script);
+  setup(o) {
+    const n = o;
+    return U(N, {
+      group: n.group,
+      position: n.position
+    }), (t, r) => T(t.$slots, "default", { group: o.group });
+  }
+});
+function M(o) {
+  o.config.globalProperties.$notify = g(), o.component("Notification", u), o.component("NotificationGroup", v), o.component("notification", u), o.component("notificationGroup", v);
 }
-
-var index = {
-  install,
+const k = {
+  install: M
 };
-
-export { script$1 as Notification, script as NotificationGroup, index as default, notify };
+function A() {
+  return f(
+    (n, { slots: t }) => () => $(u, n, t)
+  );
+}
+const L = g();
+export {
+  u as Notification,
+  v as NotificationGroup,
+  g as createNotifier,
+  k as default,
+  A as defineNotificationComponent,
+  L as notify
+};

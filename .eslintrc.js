@@ -3,13 +3,22 @@ module.exports = {
   env: {
     node: true,
   },
+  "plugins": ["prettier"],
   extends: [
-    "plugin:vue/vue3-recommended",
+    "airbnb-base",
+    "airbnb-typescript/base",
     "plugin:vue/vue3-essential",
-    "eslint:recommended",
+    "@vue/eslint-config-typescript/recommended",
+    "prettier"
   ],
-  parser: "vue-eslint-parser",
+  parserOptions: {
+    project: "./tsconfig.json",
+  },
   rules: {
+    "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "vue/multi-word-component-names": "off",

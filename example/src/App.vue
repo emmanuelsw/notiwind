@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col justify-center min-h-screen bg-gray-200 align-center">
+  <div
+    class="flex flex-col justify-center min-h-screen bg-gray-200 align-center"
+  >
     <div class="flex items-center justify-center flex-1 space-x-5">
       <button
         class="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:ring"
@@ -16,7 +18,9 @@
     </div>
 
     <NotificationGroup group="top">
-      <div class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
+      <div
+        class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
+      >
         <div class="w-full max-w-sm">
           <Notification
             v-slot="{ notifications, close }"
@@ -90,11 +94,10 @@
       </div>
     </NotificationGroup>
 
-    <NotificationGroup
-      group="bottom"
-      position="bottom"
-    >
-      <div class="fixed inset-x-0 bottom-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
+    <NotificationGroup group="bottom" position="bottom">
+      <div
+        class="fixed inset-x-0 bottom-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
+      >
         <div class="w-full max-w-sm">
           <Notification
             v-slot="{ notifications }"
@@ -126,7 +129,9 @@
 
               <div class="px-4 py-2 -mx-3">
                 <div class="mx-3">
-                  <span class="font-semibold text-red-500">{{ notification.title }}</span>
+                  <span class="font-semibold text-red-500">{{
+                    notification.title
+                  }}</span>
                   <p class="text-sm text-gray-600">
                     {{ notification.text }}
                   </p>
@@ -140,23 +145,29 @@
   </div>
 </template>
 
-<script setup>
-import { notify, Notification, NotificationGroup } from "../../dist/index.esm"
+<script setup lang="ts">
+import { notify, Notification, NotificationGroup } from "./notiwind";
 
 function onClickTop() {
-  notify({
-    group: "top",
-    title: "Success",
-    text: "Your account was created 👌"
-  }, 4000)
+  notify(
+    {
+      group: "top",
+      title: "Success",
+      text: "Your account was created 👌",
+    },
+    4000
+  );
 }
 
 function onClickBot() {
-  notify({
-    group: "bottom",
-    title: "Error",
-    text: "Invalid username or password!"
-  }, 4000)
+  notify(
+    {
+      group: "bottom",
+      title: "Error",
+      text: "Invalid username or password!",
+    },
+    4000
+  );
 }
 </script>
 

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+<a name="2.0.0"></a>
+
+### 2.0.0 (2023-01-24)
+
+- Rewrite codebase with TypeScript ([#29](https://github.com/emmanuelsw/notiwind/pull/29)). Thanks [nd0ut](https://github.com/nd0ut)!
+- Migrate from Rollup to Vite ([#29](https://github.com/emmanuelsw/notiwind/pull/29)). Thanks [nd0ut](https://github.com/nd0ut)!
+- Update core and example dependencies
+
 <a name="1.2.6"></a>
 
 ### 1.2.6 (2022-06-08)

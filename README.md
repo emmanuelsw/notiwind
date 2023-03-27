@@ -232,7 +232,7 @@ You can use the `NotificationGroup` component to have different types of notific
 Then in any of your `.vue` files:
 
 ```javascript
-// Error notifcation
+// Error notification
 this.$notify({
   group: "error",
   title: "Error",
@@ -247,7 +247,7 @@ this.$notify({
 }, 4000)
 ```
 
-### Using different types of notifcations
+### Using different types of notifications
 
 You can render different types of notifications in the same group using a conditional, for example `v-if="notification.type === 'info'"`
 
@@ -324,7 +324,7 @@ You can render different types of notifications in the same group using a condit
 Then in any of your `.vue` files:
 
 ```javascript
-// Error notifcation
+// Error notification
 this.$notify({
   title: "Info",
   text: "This channel archived by the owner!",
@@ -343,7 +343,7 @@ this.$notify({
 
 ## Props
 
-##### Props for the `Notification` component, all are opcional.
+##### Props for the `Notification` component, all are optional.
 
 | Name             | Type   | Default    | Description                                     |
 | ---------------- | ------ | ---------- | ----------------------------------------------- |
@@ -359,7 +359,7 @@ this.$notify({
 
 Check the Vue docs to know more about [Enter & Leave Transitions](https://v3.vuejs.org/guide/transitions-enterleave.html#transition-classes) and [List Move Transitions](https://v3.vuejs.org/guide/transitions-list.html#list-move-transitions).
 
-##### Props for `NotificationGroup` component, all are opcional.
+##### Props for `NotificationGroup` component, all are optional.
 
 | Name     | Type   | Description                             |
 | -------- | ------ | --------------------------------------- |

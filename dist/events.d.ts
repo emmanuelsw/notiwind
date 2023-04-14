@@ -5,6 +5,11 @@ declare type Events = {
         timeout?: number;
     };
     close: number;
+    hovering: {
+        id: number;
+        value: boolean;
+        timeout?: number;
+    };
 };
 declare const events: import("mitt").Emitter<Events>;
 export default events;

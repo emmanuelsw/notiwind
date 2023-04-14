@@ -23,7 +23,7 @@
       >
         <div class="w-full max-w-sm">
           <Notification
-            v-slot="{ notifications, close }"
+            v-slot="{ notifications, close, hovering }"
             enter="ease-out duration-300 transition"
             enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
             enter-to="translate-y-0 opacity-100 sm:translate-x-0"
@@ -37,6 +37,8 @@
               v-for="notification in notifications"
               :key="notification.id"
               class="w-full max-w-sm mt-4 overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5"
+              @mouseover="hovering(notification.id, true)"
+              @mouseleave="hovering(notification.id, false)"
             >
               <div class="p-4">
                 <div class="flex items-start">

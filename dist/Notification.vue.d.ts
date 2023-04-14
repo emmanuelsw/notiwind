@@ -78,12 +78,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
         id: number;
         group: string;
     }[]>;
+    setupTimeout: (notificationId: number, timeout?: number) => void;
     remove: (id: Notification["id"]) => void;
     add: ({ notification, timeout, }: {
         notification: Notification;
         timeout?: number | undefined;
     }) => void;
     close: (id: Notification["id"]) => void;
+    hovering: (id: number, value: boolean, timeout?: number) => void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "close"[], "close", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     maxNotifications: {
         type: NumberConstructor;

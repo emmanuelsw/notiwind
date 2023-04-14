@@ -51,6 +51,13 @@ const sortedNotifications = computed(() => {
     .slice(0, props.maxNotifications);
 });
 
+const setupTimeout = (notificationId: number, timeout?: number) => {
+  const DEFAULT_TIMEOUT = 3000;
+  state.timeouts[notificationId] = window.setTimeout(() => {
+    remove(notificationId);
+  }, timeout || DEFAULT_TIMEOUT);
+}
+
 const remove = (id: Notification["id"]) => {
   state.notifications.splice(
     state.notifications.findIndex((n) => n.id === id),
@@ -67,19 +74,27 @@ const add = ({
   notification: Notification;
   timeout?: number;
 }) => {
-  const DEFAULT_TIMEOUT = 3000;
-
   state.notifications.push(notification);
-
-  state.timeouts[notification.id] = window.setTimeout(() => {
-    remove(notification.id);
-  }, timeout || DEFAULT_TIMEOUT);
+  setupTimeout(notification.id, timeout)
 };
 
 const close = (id: Notification["id"]) => {
   emit("close");
   remove(id);
 };
+
+const hovering = (
+  id: number,
+  value: boolean,
+  timeout?: number
+) => {
+  if (value) {
+    clearTimeout(state.timeouts[id])
+  }
+  else {
+    setupTimeout(id, timeout)
+  }
+}
 
 onMounted(() => {
   events.on("notify", add);
@@ -101,6 +116,6 @@ onMounted(() => {
     :leave-to-class="props.leaveTo"
     :move-class="props.move"
   >
-    <slot :notifications="sortedNotifications" :close="close"></slot>
+    <slot :notifications="sortedNotifications" :close="close" :hovering="hovering"></slot>
   </TransitionGroup>
 </template>

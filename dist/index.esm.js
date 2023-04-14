@@ -1,18 +1,18 @@
-import h from "mitt";
-import { defineComponent as f, inject as E, reactive as F, computed as m, onMounted as G, openBlock as w, createBlock as C, TransitionGroup as D, unref as p, withCtx as I, renderSlot as T, provide as U, h as $ } from "vue";
-const c = h();
-let d = 0;
-const B = () => {
-  const o = d;
-  return d += 1, o;
-}, g = () => (o, n) => {
+import G from "mitt";
+import { defineComponent as f, inject as w, reactive as C, computed as d, onMounted as D, openBlock as U, createBlock as $, TransitionGroup as B, unref as v, withCtx as I, renderSlot as N, provide as M, h as O } from "vue";
+const c = G();
+let T = 0;
+const b = () => {
+  const o = T;
+  return T += 1, o;
+}, _ = () => (o, n) => {
   const t = {
     ...o,
-    id: B(),
+    id: b(),
     group: o.group || ""
   };
   return c.emit("notify", { notification: t, timeout: n }), () => c.emit("close", t.id);
-}, N = "context", u = /* @__PURE__ */ f({
+}, x = "context", u = /* @__PURE__ */ f({
   __name: "Notification",
   props: {
     maxNotifications: { default: 10 },
@@ -27,27 +27,31 @@ const B = () => {
   },
   emits: ["close"],
   setup(o, { emit: n }) {
-    const t = o, r = E(N), i = F({ notifications: [], timeouts: {} }), a = m(
-      () => i.notifications.filter((e) => e.group === r.group)
-    ), _ = m(() => r.position === "bottom" ? [...a.value].slice(0, t.maxNotifications) : [...a.value].reverse().slice(0, t.maxNotifications)), l = (e) => {
-      i.notifications.splice(
-        i.notifications.findIndex((s) => s.id === e),
+    const t = o, r = w(x), s = C({ notifications: [], timeouts: {} }), a = d(
+      () => s.notifications.filter((e) => e.group === r.group)
+    ), h = d(() => r.position === "bottom" ? [...a.value].slice(0, t.maxNotifications) : [...a.value].reverse().slice(0, t.maxNotifications)), m = (e, i) => {
+      s.timeouts[e] = window.setTimeout(() => {
+        l(e);
+      }, i || 3e3);
+    }, l = (e) => {
+      s.notifications.splice(
+        s.notifications.findIndex((i) => i.id === e),
         1
-      ), clearTimeout(i.timeouts[e]);
-    }, x = ({
+      ), clearTimeout(s.timeouts[e]);
+    }, y = ({
       notification: e,
-      timeout: s
+      timeout: i
     }) => {
-      i.notifications.push(e), i.timeouts[e.id] = window.setTimeout(() => {
-        l(e.id);
-      }, s || 3e3);
-    }, y = (e) => {
+      s.notifications.push(e), m(e.id, i);
+    }, E = (e) => {
       n("close"), l(e);
+    }, F = (e, i, p) => {
+      i ? clearTimeout(s.timeouts[e]) : m(e, p);
     };
-    return G(() => {
-      c.on("notify", x), c.on("close", l);
-    }), (e, s) => (w(), C(D, {
-      "enter-active-class": p(a).length > 1 ? [t.enter, t.moveDelay].join(" ") : t.enter,
+    return D(() => {
+      c.on("notify", y), c.on("close", l);
+    }), (e, i) => (U(), $(B, {
+      "enter-active-class": v(a).length > 1 ? [t.enter, t.moveDelay].join(" ") : t.enter,
       "enter-from-class": t.enterFrom,
       "enter-to-class": t.enterTo,
       "leave-active-class": t.leave,
@@ -56,15 +60,16 @@ const B = () => {
       "move-class": t.move
     }, {
       default: I(() => [
-        T(e.$slots, "default", {
-          notifications: p(_),
-          close: y
+        N(e.$slots, "default", {
+          notifications: v(h),
+          close: E,
+          hovering: F
         })
       ]),
       _: 3
     }, 8, ["enter-active-class", "enter-from-class", "enter-to-class", "leave-active-class", "leave-from-class", "leave-to-class", "move-class"]));
   }
-}), v = /* @__PURE__ */ f({
+}), g = /* @__PURE__ */ f({
   __name: "NotificationGroup",
   props: {
     group: { default: "" },
@@ -72,29 +77,29 @@ const B = () => {
   },
   setup(o) {
     const n = o;
-    return U(N, {
+    return M(x, {
       group: n.group,
       position: n.position
-    }), (t, r) => T(t.$slots, "default", { group: o.group });
+    }), (t, r) => N(t.$slots, "default", { group: o.group });
   }
 });
-function M(o) {
-  o.config.globalProperties.$notify = g(), o.component("Notification", u), o.component("NotificationGroup", v), o.component("notification", u), o.component("notificationGroup", v);
+function j(o) {
+  o.config.globalProperties.$notify = _(), o.component("Notification", u), o.component("NotificationGroup", g), o.component("notification", u), o.component("notificationGroup", g);
 }
-const k = {
-  install: M
+const L = {
+  install: j
 };
-function A() {
+function K() {
   return f(
-    (n, { slots: t }) => () => $(u, n, t)
+    (n, { slots: t }) => () => O(u, n, t)
   );
 }
-const L = g();
+const P = _();
 export {
   u as Notification,
-  v as NotificationGroup,
-  g as createNotifier,
-  k as default,
-  A as defineNotificationComponent,
-  L as notify
+  g as NotificationGroup,
+  _ as createNotifier,
+  L as default,
+  K as defineNotificationComponent,
+  P as notify
 };

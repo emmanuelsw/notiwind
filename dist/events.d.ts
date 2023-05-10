@@ -1,5 +1,5 @@
 import { Notification } from "./types";
-declare type Events = {
+type Events = {
     notify: {
         notification: Notification;
         timeout?: number;

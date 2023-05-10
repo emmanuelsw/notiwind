@@ -1,5 +1,12 @@
 # CHANGELOG
 
+<a name="2.0.1"></a>
+
+### 2.0.1 (2023-01-24)
+
+- Add ability to specify INFINITE_TIMEOUT ([#39](https://github.com/emmanuelsw/notiwind/pull/39)). Thanks [krydos](https://github.com/krydos)!
+- Update core and example dependencies
+
 <a name="2.0.0"></a>
 
 ### 2.0.0 (2023-01-24)

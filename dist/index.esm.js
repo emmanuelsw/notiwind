@@ -1,18 +1,18 @@
-import h from "mitt";
-import { defineComponent as f, inject as E, reactive as F, computed as m, onMounted as G, openBlock as w, createBlock as C, TransitionGroup as D, unref as p, withCtx as I, renderSlot as T, provide as U, h as $ } from "vue";
-const c = h();
+import x from "mitt";
+import { defineComponent as f, inject as F, reactive as h, computed as m, onMounted as y, openBlock as G, createBlock as M, TransitionGroup as U, unref as p, withCtx as w, renderSlot as T, provide as O, h as C } from "vue";
+const r = x();
 let d = 0;
-const B = () => {
+const D = () => {
   const o = d;
   return d += 1, o;
-}, g = () => (o, n) => {
+}, N = () => (o, n) => {
   const t = {
     ...o,
-    id: B(),
+    id: D(),
     group: o.group || ""
   };
-  return c.emit("notify", { notification: t, timeout: n }), () => c.emit("close", t.id);
-}, N = "context", u = /* @__PURE__ */ f({
+  return r.emit("notify", { notification: t, timeout: n }), () => r.emit("close", t.id);
+}, g = "context", u = /* @__PURE__ */ f({
   __name: "Notification",
   props: {
     maxNotifications: { default: 10 },
@@ -27,26 +27,26 @@ const B = () => {
   },
   emits: ["close"],
   setup(o, { emit: n }) {
-    const t = o, r = E(N), i = F({ notifications: [], timeouts: {} }), a = m(
-      () => i.notifications.filter((e) => e.group === r.group)
-    ), _ = m(() => r.position === "bottom" ? [...a.value].slice(0, t.maxNotifications) : [...a.value].reverse().slice(0, t.maxNotifications)), l = (e) => {
+    const t = o, c = F(g), i = h({ notifications: [], timeouts: {} }), a = m(
+      () => i.notifications.filter((e) => e.group === c.group)
+    ), _ = m(() => c.position === "bottom" ? [...a.value].slice(0, t.maxNotifications) : [...a.value].reverse().slice(0, t.maxNotifications)), l = (e) => {
       i.notifications.splice(
         i.notifications.findIndex((s) => s.id === e),
         1
       ), clearTimeout(i.timeouts[e]);
-    }, x = ({
+    }, I = ({
       notification: e,
       timeout: s
     }) => {
       i.notifications.push(e), i.timeouts[e.id] = window.setTimeout(() => {
-        l(e.id);
-      }, s || 3e3);
-    }, y = (e) => {
+        s !== -1 && l(e.id);
+      }, Math.max(s || 3e3, 0));
+    }, E = (e) => {
       n("close"), l(e);
     };
-    return G(() => {
-      c.on("notify", x), c.on("close", l);
-    }), (e, s) => (w(), C(D, {
+    return y(() => {
+      r.on("notify", I), r.on("close", l);
+    }), (e, s) => (G(), M(U, {
       "enter-active-class": p(a).length > 1 ? [t.enter, t.moveDelay].join(" ") : t.enter,
       "enter-from-class": t.enterFrom,
       "enter-to-class": t.enterTo,
@@ -55,10 +55,10 @@ const B = () => {
       "leave-to-class": t.leaveTo,
       "move-class": t.move
     }, {
-      default: I(() => [
+      default: w(() => [
         T(e.$slots, "default", {
           notifications: p(_),
-          close: y
+          close: E
         })
       ]),
       _: 3
@@ -72,29 +72,29 @@ const B = () => {
   },
   setup(o) {
     const n = o;
-    return U(N, {
+    return O(g, {
       group: n.group,
       position: n.position
-    }), (t, r) => T(t.$slots, "default", { group: o.group });
+    }), (t, c) => T(t.$slots, "default", { group: o.group });
   }
 });
-function M(o) {
-  o.config.globalProperties.$notify = g(), o.component("Notification", u), o.component("NotificationGroup", v), o.component("notification", u), o.component("notificationGroup", v);
+function $(o) {
+  o.config.globalProperties.$notify = N(), o.component("Notification", u), o.component("NotificationGroup", v), o.component("notification", u), o.component("notificationGroup", v);
 }
-const k = {
-  install: M
+const A = {
+  install: $
 };
-function A() {
+function L() {
   return f(
-    (n, { slots: t }) => () => $(u, n, t)
+    (n, { slots: t }) => () => C(u, n, t)
   );
 }
-const L = g();
+const K = N();
 export {
   u as Notification,
   v as NotificationGroup,
-  g as createNotifier,
-  k as default,
-  A as defineNotificationComponent,
-  L as notify
+  N as createNotifier,
+  A as default,
+  L as defineNotificationComponent,
+  K as notify
 };

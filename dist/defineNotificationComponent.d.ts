@@ -153,7 +153,7 @@ declare function defineNotificationComponent<T extends NotificationSchema>(): {
         };
         $forceUpdate: () => void;
         $nextTick: typeof import("vue").nextTick;
-        $watch<T_1 extends string | ((...args: any) => any)>(source: T_1, cb: T_1 extends (...args: any) => infer R ? (args_0: R, args_1: R) => any : (...args: any) => any, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
+        $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (args_0: R, args_1: R) => any : (...args: any) => any, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
     } & Readonly<{
         maxNotifications?: number | undefined;
         enter?: string | undefined;

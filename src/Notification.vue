@@ -68,13 +68,17 @@ const add = ({
   timeout?: number;
 }) => {
   const DEFAULT_TIMEOUT = 3000;
+  const INFINITE_TIMEOUT = -1;
 
   state.notifications.push(notification);
 
   state.timeouts[notification.id] = window.setTimeout(() => {
+    if (timeout === INFINITE_TIMEOUT) return;
+
     remove(notification.id);
-  }, timeout || DEFAULT_TIMEOUT);
-};
+
+    // use Math.max to make sure we don't pass INFINITE_TIMEOUT to setTimeout
+  }, Math.max(timeout || DEFAULT_TIMEOUT, 0)); };
 
 const close = (id: Notification["id"]) => {
   emit("close");

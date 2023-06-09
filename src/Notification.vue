@@ -43,12 +43,10 @@ const notificationsByGroup = computed(() =>
 );
 const sortedNotifications = computed(() => {
   if (context.position === "bottom") {
-    return [...notificationsByGroup.value].slice(0, props.maxNotifications);
+    return [...notificationsByGroup.value];
   }
 
-  return [...notificationsByGroup.value]
-    .reverse()
-    .slice(0, props.maxNotifications);
+  return [...notificationsByGroup.value].reverse();
 });
 
 const remove = (id: Notification["id"]) => {
@@ -70,6 +68,10 @@ const add = ({
   const DEFAULT_TIMEOUT = 3000;
   const INFINITE_TIMEOUT = -1;
 
+  if(state.notifications.length == props.maxNotifications) {
+    return;
+  }
+  
   state.notifications.push(notification);
 
   state.timeouts[notification.id] = window.setTimeout(() => {

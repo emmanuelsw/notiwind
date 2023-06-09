@@ -68,10 +68,8 @@ const add = ({
   const DEFAULT_TIMEOUT = 3000;
   const INFINITE_TIMEOUT = -1;
 
-  if(state.notifications.length == props.maxNotifications) {
-    return;
-  }
-  
+  if(state.notifications.length === props.maxNotifications) return;
+
   state.notifications.push(notification);
 
   state.timeouts[notification.id] = window.setTimeout(() => {

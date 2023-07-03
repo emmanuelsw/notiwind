@@ -145,6 +145,17 @@ this.$notify({
 
 The first argument is an object containing the data for the `Notification` element, it's important to specify the group where the notificatoins are going to be displayed, the second argument is the timeout. The default timeout is 3 seconds.
 
+If you need to keep the notification on the screen forever use `-1` as a timeout:
+
+```javascript
+this.$notify({
+  group: "foo",
+  title: "Success",
+  text: "Your account was registered!"
+}, -1) // it's not going to disappear automatically
+```
+
+
 ### Example with differents groups
 
 You can use the `NotificationGroup` component to have different types of notifications. For example, notifications error messages in top center and generic app notifications in bottom-right corner.

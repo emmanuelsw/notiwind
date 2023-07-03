@@ -1,4 +1,4 @@
-import type { Context, Notification } from "./types";
+import type { PropType as __PropType } from 'vue';
 export interface Props {
     maxNotifications?: number;
     enter?: string;
@@ -12,137 +12,107 @@ export interface Props {
 }
 declare const _sfc_main: import("vue").DefineComponent<{
     maxNotifications: {
-        type: NumberConstructor;
+        type: __PropType<number | undefined>;
         required: false;
         default: number;
     };
     enter: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     enterFrom: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     enterTo: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     leave: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     leaveFrom: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     leaveTo: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     move: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     moveDelay: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
-}, {
-    props: any;
-    emit: (e: "close") => void;
-    context: Context;
-    state: {
-        notifications: {
-            [x: string]: unknown;
-            id: number;
-            group: string;
-        }[];
-        timeouts: Record<string, number>;
-    };
-    notificationsByGroup: import("vue").ComputedRef<{
-        [x: string]: unknown;
-        id: number;
-        group: string;
-    }[]>;
-    sortedNotifications: import("vue").ComputedRef<{
-        [x: string]: unknown;
-        id: number;
-        group: string;
-    }[]>;
-    setupTimeout: (notificationId: number, timeout?: number) => void;
-    remove: (id: Notification["id"]) => void;
-    add: ({ notification, timeout, }: {
-        notification: Notification;
-        timeout?: number | undefined;
-    }) => void;
-    close: (id: Notification["id"]) => void;
-    hovering: (id: number, value: boolean, timeout?: number) => void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "close"[], "close", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "close"[], "close", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     maxNotifications: {
-        type: NumberConstructor;
+        type: __PropType<number | undefined>;
         required: false;
         default: number;
     };
     enter: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     enterFrom: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     enterTo: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     leave: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     leaveFrom: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     leaveTo: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     move: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
     moveDelay: {
-        type: StringConstructor;
+        type: __PropType<string | undefined>;
         required: false;
         default: string;
     };
 }>> & {
     onClose?: ((...args: any[]) => any) | undefined;
 }, {
-    maxNotifications: number;
-    enter: string;
-    enterFrom: string;
-    enterTo: string;
-    leave: string;
-    leaveFrom: string;
-    leaveTo: string;
-    move: string;
-    moveDelay: string;
+    maxNotifications: number | undefined;
+    enter: string | undefined;
+    enterFrom: string | undefined;
+    enterTo: string | undefined;
+    leave: string | undefined;
+    leaveFrom: string | undefined;
+    leaveTo: string | undefined;
+    move: string | undefined;
+    moveDelay: string | undefined;
 }>;
 export default _sfc_main;

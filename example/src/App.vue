@@ -10,6 +10,12 @@
         Top notification
       </button>
       <button
+        class="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:ring"
+        @click="onClickTopInfinite"
+      >
+        Top notification infinite
+      </button>
+      <button
         class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none focus:ring"
         @click="onClickBot"
       >
@@ -160,6 +166,17 @@ function onClickTop() {
     4000
   );
 }
+
+function onClickTopInfinite() {
+  notify(
+    {
+      group: "top",
+      title: "Success",
+      text: "I'm not going to disappear until you close me 😎",
+    },
+    -1
+  );
+ }
 
 function onClickBot() {
   notify(

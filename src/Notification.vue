@@ -53,9 +53,15 @@ const sortedNotifications = computed(() => {
 
 const setupTimeout = (notificationId: number, timeout?: number) => {
   const DEFAULT_TIMEOUT = 3000;
+  const INFINITE_TIMEOUT = -1;
+
   state.timeouts[notificationId] = window.setTimeout(() => {
+    if (timeout === INFINITE_TIMEOUT) return;
+
     remove(notificationId);
-  }, timeout || DEFAULT_TIMEOUT);
+
+    // use Math.max to make sure we don't pass INFINITE_TIMEOUT to setTimeout
+  }, Math.max(timeout || DEFAULT_TIMEOUT, 0));
 }
 
 const remove = (id: Notification["id"]) => {

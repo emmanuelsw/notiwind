@@ -1,8 +1,16 @@
 # CHANGELOG
 
+<a name="2.0.2"></a>
+
+### 2.0.2 (2023-07-04)
+
+- Prevent notification to be closed if hovered ([#38](https://github.com/emmanuelsw/notiwind/pull/38)). Thanks [Joao-VictorF](https://github.com/Joao-VictorF)!
+- Immediate effect max notifications ([#41](https://github.com/emmanuelsw/notiwind/pull/41)). Thanks [Tamas-hi](Tamas-hi)!
+- Update core and example dependencies
+
 <a name="2.0.1"></a>
 
-### 2.0.1 (2023-01-24)
+### 2.0.1 (2023-04-10)
 
 - Add ability to specify INFINITE_TIMEOUT ([#39](https://github.com/emmanuelsw/notiwind/pull/39)). Thanks [krydos](https://github.com/krydos)!
 - Update core and example dependencies

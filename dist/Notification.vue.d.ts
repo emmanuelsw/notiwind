@@ -1,4 +1,3 @@
-import type { PropType as __PropType } from 'vue';
 export interface Props {
     maxNotifications?: number;
     enter?: string;
@@ -10,109 +9,108 @@ export interface Props {
     move?: string;
     moveDelay?: string;
 }
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     maxNotifications: {
-        type: __PropType<number | undefined>;
-        required: false;
+        type: import("vue").PropType<number>;
         default: number;
     };
     enter: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     enterFrom: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     enterTo: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     leave: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     leaveFrom: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     leaveTo: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     move: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     moveDelay: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
-}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "close"[], "close", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    close: () => void;
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     maxNotifications: {
-        type: __PropType<number | undefined>;
-        required: false;
+        type: import("vue").PropType<number>;
         default: number;
     };
     enter: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     enterFrom: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     enterTo: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     leave: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     leaveFrom: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     leaveTo: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     move: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     moveDelay: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
 }>> & {
-    onClose?: ((...args: any[]) => any) | undefined;
+    onClose?: (() => any) | undefined;
 }, {
-    maxNotifications: number | undefined;
-    enter: string | undefined;
-    enterFrom: string | undefined;
-    enterTo: string | undefined;
-    leave: string | undefined;
-    leaveFrom: string | undefined;
-    leaveTo: string | undefined;
-    move: string | undefined;
-    moveDelay: string | undefined;
+    maxNotifications: number;
+    enter: string;
+    enterFrom: string;
+    enterTo: string;
+    leave: string;
+    leaveFrom: string;
+    leaveTo: string;
+    move: string;
+    moveDelay: string;
+}>, {
+    default?(_: {
+        notifications: {
+            [x: string]: unknown;
+            id: number;
+            group: string;
+        }[];
+        close: (id: number) => void;
+        hovering: (id: number, value: boolean, timeout?: number | undefined) => void;
+    }): any;
 }>;
-export default _sfc_main;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

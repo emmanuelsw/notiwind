@@ -385,12 +385,13 @@ Scope props:
 | ------------- | -------- | ------------------------------------------------------------------------ |
 | notifications | Array    | Array of notification objects.                                             |
 | close         | Function | Closes the notification. Expects the notification ID as parameter |
+| hovering      | Function | Prevents notification from closing if being hovered. Expected the notification ID, the hover value (true or false) and optionally, a timeout to be used in the mouse leave (hover ended). |
 
 ### Example
 
 ```vue
 <Notification
-  v-slot="{ notifications, close }"
+  v-slot="{ notifications, close, hovering }"
   enter="transform ease-out duration-300 transition"
   enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
   enter-to="translate-y-0 opacity-100 sm:translate-x-0"
@@ -405,6 +406,8 @@ Scope props:
     :key="notification.id"
     class="relative px-4 py-3 mt-4 text-red-700 bg-red-100 border border-red-400 rounded"
     role="alert"
+    @mouseover="hovering(notification.id, true)"
+    @mouseleave="hovering(notification.id, false)"
   >
     <strong class="font-bold">Holy smokes!</strong>
     <span class="block sm:inline">Something seriously bad happened.</span>

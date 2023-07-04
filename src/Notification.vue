@@ -43,12 +43,10 @@ const notificationsByGroup = computed(() =>
 );
 const sortedNotifications = computed(() => {
   if (context.position === "bottom") {
-    return [...notificationsByGroup.value].slice(0, props.maxNotifications);
+    return [...notificationsByGroup.value];
   }
 
-  return [...notificationsByGroup.value]
-    .reverse()
-    .slice(0, props.maxNotifications);
+  return [...notificationsByGroup.value].reverse();
 });
 
 const setupTimeout = (notificationId: number, timeout?: number) => {
@@ -80,6 +78,8 @@ const add = ({
   notification: Notification;
   timeout?: number;
 }) => {
+  if(state.notifications.length === props.maxNotifications) return;
+
   state.notifications.push(notification);
   setupTimeout(notification.id, timeout)
 };

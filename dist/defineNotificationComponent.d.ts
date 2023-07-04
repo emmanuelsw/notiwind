@@ -19,7 +19,7 @@ declare function defineNotificationComponent<T extends NotificationSchema>(): {
             leaveTo?: string | undefined;
             move?: string | undefined;
             moveDelay?: string | undefined;
-            onClose?: ((...args: any[]) => any) | undefined;
+            onClose?: (() => any) | undefined;
             key?: string | number | symbol | undefined;
             ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
@@ -88,7 +88,7 @@ declare function defineNotificationComponent<T extends NotificationSchema>(): {
             leaveTo?: string | undefined;
             move?: string | undefined;
             moveDelay?: string | undefined;
-            onClose?: ((...args: any[]) => any) | undefined;
+            onClose?: (() => any) | undefined;
             key?: string | number | symbol | undefined;
             ref?: import("vue").VNodeRef | undefined;
             ref_for?: boolean | undefined;
@@ -165,7 +165,7 @@ declare function defineNotificationComponent<T extends NotificationSchema>(): {
         leaveTo?: string | undefined;
         move?: string | undefined;
         moveDelay?: string | undefined;
-        onClose?: ((...args: any[]) => any) | undefined;
+        onClose?: (() => any) | undefined;
         key?: string | number | symbol | undefined;
         ref?: import("vue").VNodeRef | undefined;
         ref_for?: boolean | undefined;
@@ -228,7 +228,7 @@ declare function defineNotificationComponent<T extends NotificationSchema>(): {
     leaveTo?: string | undefined;
     move?: string | undefined;
     moveDelay?: string | undefined;
-    onClose?: ((...args: any[]) => any) | undefined;
+    onClose?: (() => any) | undefined;
     key?: string | number | symbol | undefined;
     ref?: import("vue").VNodeRef | undefined;
     ref_for?: boolean | undefined;

@@ -1,32 +1,36 @@
-import type { PropType as __PropType } from 'vue';
 export interface Props {
     group?: string;
     position?: "top" | "bottom";
 }
-declare const _sfc_main: import("vue").DefineComponent<{
+declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     group: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     position: {
-        type: __PropType<"top" | "bottom" | undefined>;
-        required: false;
+        type: import("vue").PropType<"top" | "bottom">;
         default: string;
     };
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     group: {
-        type: __PropType<string | undefined>;
-        required: false;
+        type: import("vue").PropType<string>;
         default: string;
     };
     position: {
-        type: __PropType<"top" | "bottom" | undefined>;
-        required: false;
+        type: import("vue").PropType<"top" | "bottom">;
         default: string;
     };
 }>>, {
-    group: string | undefined;
-    position: "top" | "bottom" | undefined;
+    group: string;
+    position: "top" | "bottom";
+}>, {
+    default?(_: {
+        group: string;
+    }): any;
 }>;
-export default _sfc_main;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & {
+    new (): {
+        $slots: S;
+    };
+};

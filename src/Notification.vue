@@ -51,6 +51,19 @@ const sortedNotifications = computed(() => {
     .slice(0, props.maxNotifications);
 });
 
+const setupTimeout = (notificationId: number, timeout?: number) => {
+  const DEFAULT_TIMEOUT = 3000;
+  const INFINITE_TIMEOUT = -1;
+
+  state.timeouts[notificationId] = window.setTimeout(() => {
+    if (timeout === INFINITE_TIMEOUT) return;
+
+    remove(notificationId);
+
+    // use Math.max to make sure we don't pass INFINITE_TIMEOUT to setTimeout
+  }, Math.max(timeout || DEFAULT_TIMEOUT, 0));
+}
+
 const remove = (id: Notification["id"]) => {
   state.notifications.splice(
     state.notifications.findIndex((n) => n.id === id),
@@ -67,23 +80,27 @@ const add = ({
   notification: Notification;
   timeout?: number;
 }) => {
-  const DEFAULT_TIMEOUT = 3000;
-  const INFINITE_TIMEOUT = -1;
-
   state.notifications.push(notification);
-
-  state.timeouts[notification.id] = window.setTimeout(() => {
-    if (timeout === INFINITE_TIMEOUT) return;
-
-    remove(notification.id);
-
-    // use Math.max to make sure we don't pass INFINITE_TIMEOUT to setTimeout
-  }, Math.max(timeout || DEFAULT_TIMEOUT, 0)); };
+  setupTimeout(notification.id, timeout)
+};
 
 const close = (id: Notification["id"]) => {
   emit("close");
   remove(id);
 };
+
+const hovering = (
+  id: number,
+  value: boolean,
+  timeout?: number
+) => {
+  if (value) {
+    clearTimeout(state.timeouts[id])
+  }
+  else {
+    setupTimeout(id, timeout)
+  }
+}
 
 onMounted(() => {
   events.on("notify", add);
@@ -105,6 +122,6 @@ onMounted(() => {
     :leave-to-class="props.leaveTo"
     :move-class="props.move"
   >
-    <slot :notifications="sortedNotifications" :close="close"></slot>
+    <slot :notifications="sortedNotifications" :close="close" :hovering="hovering"></slot>
   </TransitionGroup>
 </template>

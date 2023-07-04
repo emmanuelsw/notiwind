@@ -3,6 +3,7 @@ import { NotificationSchema, Notification } from "./types";
 interface SlotProps<T extends NotificationSchema> {
     notifications: Notification<T>[];
     close: (id: Notification["id"]) => void;
+    hovering: (id: Notification["id"], value: boolean, timeout?: number) => void;
 }
 declare function defineNotificationComponent<T extends NotificationSchema>(): {
     new (...args: any[]): {

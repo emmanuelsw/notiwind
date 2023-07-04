@@ -79,7 +79,7 @@ const add = ({
   timeout?: number;
 }) => {
   if(state.notifications.length === props.maxNotifications) return;
-  
+
   state.notifications.push(notification);
   setupTimeout(notification.id, timeout)
 };

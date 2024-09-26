@@ -3,6 +3,10 @@ import { provide } from "vue";
 import { CONTEXT_KEY } from "./constants";
 import type { Context } from "./types";
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 export interface Props {
   group?: string;
   position?: "top" | "bottom";

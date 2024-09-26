@@ -70,6 +70,7 @@ const b = () => {
     }, 8, ["enter-active-class", "enter-from-class", "enter-to-class", "leave-active-class", "leave-from-class", "leave-to-class", "move-class"]));
   }
 }), N = /* @__PURE__ */ f({
+  inheritAttrs: !1,
   __name: "NotificationGroup",
   props: {
     group: { default: "" },

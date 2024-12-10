@@ -1,4 +1,3 @@
-
 # Notiwind
 
 <a href="https://www.npmjs.com/package/notiwind">
@@ -19,7 +18,7 @@ This is a fork and port of [vue3-vt-notifications](https://github.com/killmenot/
 - 100% Customizable
 - Composition API support
 - Create different groups of notifications
-- Tailwind's JIT support
+- Permanent and stay on hover options
 
 ## 🤖 Demo
 
@@ -28,7 +27,7 @@ This is a fork and port of [vue3-vt-notifications](https://github.com/killmenot/
 ## ⚡️ Installation
 
 ```bash
-yarn add notiwind
+pnpm add notiwind
 ```
 
 or
@@ -44,9 +43,7 @@ import { createApp } from 'vue'
 import Notifications from 'notiwind'
 import App from './App.vue'
 
-createApp(App)
-  .use(Notifications)
-  .mount('#app')
+createApp(App).use(Notifications).mount('#app')
 ```
 
 ## 🍞 How to use
@@ -69,23 +66,29 @@ Then, trigger notifications from your `.vue` files:
 ###### Options API
 
 ```javascript
-this.$notify({
-  group: "foo",
-  title: "Success",
-  text: "Your account was registered!"
-}, 2000) // 2s
+this.$notify(
+  {
+    group: 'foo',
+    title: 'Success',
+    text: 'Your account was registered!',
+  },
+  2000,
+) // 2s
 ```
 
 ###### Composition API
 
 ```javascript
-import { notify } from "notiwind"
+import { notify } from 'notiwind'
 
-notify({
-  group: "foo",
-  title: "Success",
-  text: "Your account was registered!"
-}, 4000) // 4s
+notify(
+  {
+    group: 'foo',
+    title: 'Success',
+    text: 'Your account was registered!',
+  },
+  4000,
+) // 4s
 ```
 
 ### Basic example
@@ -136,11 +139,14 @@ For example in your `App.vue`
 Then in any of your `.vue` files:
 
 ```javascript
-this.$notify({
-  group: "foo",
-  title: "Success",
-  text: "Your account was registered!"
-}, 2000) // 2s
+this.$notify(
+  {
+    group: 'foo',
+    title: 'Success',
+    text: 'Your account was registered!',
+  },
+  2000,
+) // 2s
 ```
 
 The first argument is an object containing the data for the `Notification` element, it's important to specify the group where the notificatoins are going to be displayed, the second argument is the timeout. The default timeout is 3 seconds.
@@ -148,13 +154,15 @@ The first argument is an object containing the data for the `Notification` eleme
 If you need to keep the notification on the screen forever use `-1` as a timeout:
 
 ```javascript
-this.$notify({
-  group: "foo",
-  title: "Success",
-  text: "Your account was registered!"
-}, -1) // it's not going to disappear automatically
+this.$notify(
+  {
+    group: 'foo',
+    title: 'Success',
+    text: 'Your account was registered!',
+  },
+  -1,
+) // it's not going to disappear automatically
 ```
-
 
 ### Example with differents groups
 
@@ -244,18 +252,24 @@ Then in any of your `.vue` files:
 
 ```javascript
 // Error notification
-this.$notify({
-  group: "error",
-  title: "Error",
-  text: "Your email is already used!"
-}, 4000)
+this.$notify(
+  {
+    group: 'error',
+    title: 'Error',
+    text: 'Your email is already used!',
+  },
+  4000,
+)
 
 // Generic notification
-this.$notify({
-  group: "generic",
-  title: "Info",
-  text: "This channel archived by the owner"
-}, 4000)
+this.$notify(
+  {
+    group: 'generic',
+    title: 'Info',
+    text: 'This channel archived by the owner',
+  },
+  4000,
+)
 ```
 
 ### Using different types of notifications
@@ -336,55 +350,61 @@ Then in any of your `.vue` files:
 
 ```javascript
 // Error notification
-this.$notify({
-  title: "Info",
-  text: "This channel archived by the owner!",
-  type: "info",
-  group: "foo",
-}, 4000)
+this.$notify(
+  {
+    title: 'Info',
+    text: 'This channel archived by the owner!',
+    type: 'info',
+    group: 'foo',
+  },
+  4000,
+)
 
 // Generic notification
-this.$notify({
-  title: "Warning",
-  text: "Your image size is too large!",
-  type: "warning",
-  group: "foo",
-}, 4000)
+this.$notify(
+  {
+    title: 'Warning',
+    text: 'Your image size is too large!',
+    type: 'warning',
+    group: 'foo',
+  },
+  4000,
+)
 ```
 
 ## Props
 
 ##### Props for the `Notification` component, all are optional.
 
-| Name             | Type   | Default    | Description                                     |
-| ---------------- | ------ | ---------- | ----------------------------------------------- |
-| maxNotifications | Number |     10     | Maximum notifications displayed simultaneously  |
-| enter            | String |     ""     | *enter-active-class* transition classes. Applied during the entire entering phase.            |
-| enterFrom        | String |     ""     | *enter-from-class* transition classes. Starting state for enter.           |
-| enterTo          | String |     ""     | *enter-to-class* transition classes. Ending state for enter.           |
-| leave            | String |     ""     | *leave-active-class* transition classes. Applied during the entire leaving phase.           |
-| leaveFrom        | String |     ""     | *leave-from-class* transition classes. Starting state for leave.            |
-| leaveTo          | String |     ""     | *leave-to-class* transition classes. Ending state for leave.           |
-| move             | String |     ""     | *move-class* transition classes. Added when items are changing positions.           |
-| moveDelay        | String |     ""     | Delay between the position change. `delay-300` recommended value.          |
+| Name             | Type   | Default | Description                                                                        |
+| ---------------- | ------ | ------- | ---------------------------------------------------------------------------------- |
+| maxNotifications | Number | 10      | Maximum notifications displayed simultaneously                                     |
+| enter            | String | ""      | _enter-active-class_ transition classes. Applied during the entire entering phase. |
+| enterFrom        | String | ""      | _enter-from-class_ transition classes. Starting state for enter.                   |
+| enterTo          | String | ""      | _enter-to-class_ transition classes. Ending state for enter.                       |
+| leave            | String | ""      | _leave-active-class_ transition classes. Applied during the entire leaving phase.  |
+| leaveFrom        | String | ""      | _leave-from-class_ transition classes. Starting state for leave.                   |
+| leaveTo          | String | ""      | _leave-to-class_ transition classes. Ending state for leave.                       |
+| move             | String | ""      | _move-class_ transition classes. Added when items are changing positions.          |
+| moveDelay        | String | ""      | Delay between the position change. `delay-300` recommended value.                  |
 
 Check the Vue docs to know more about [Enter & Leave Transitions](https://v3.vuejs.org/guide/transitions-enterleave.html#transition-classes) and [List Move Transitions](https://v3.vuejs.org/guide/transitions-list.html#list-move-transitions).
 
 ##### Props for `NotificationGroup` component, all are optional.
 
-| Name     | Type   | Description                             |
-| -------- | ------ | --------------------------------------- |
+| Name     | Type   | Description                               |
+| -------- | ------ | ----------------------------------------- |
 | position | String | "bottom" or "top" are the posible values. |
-| group    | String | Name of the group of notifications.      |
+| group    | String | Name of the group of notifications.       |
 
 ## Defualt scoped slots
 
 Scope props:
 
-| Name          | Type     | Description                                                              |
-| ------------- | -------- | ------------------------------------------------------------------------ |
-| notifications | Array    | Array of notification objects.                                             |
-| close         | Function | Closes the notification. Expects the notification ID as parameter |
+| Name          | Type     | Description                                                                                                                                                                               |
+| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| notifications | Array    | Array of notification objects.                                                                                                                                                            |
+| close         | Function | Closes the notification. Expects the notification ID as parameter                                                                                                                         |
 | hovering      | Function | Prevents notification from closing if being hovered. Expected the notification ID, the hover value (true or false) and optionally, a timeout to be used in the mouse leave (hover ended). |
 
 ### Example
@@ -435,44 +455,43 @@ Typed notifications supported using the Composition API only.
 
 ```typescript
 // notiwind.ts
-import {
-  createNotifier,
-  NotificationGroup,
-  defineNotificationComponent,
-} from "notiwind";
+import { createNotifier, NotificationGroup, defineNotificationComponent } from 'notiwind'
 
 export type NotificationSchema = {
-  title: string;
-  text: string;
-};
+  title: string
+  text: string
+}
 
-export const notify = createNotifier<NotificationSchema>();
-export const Notification = defineNotificationComponent<NotificationSchema>();
-export { NotificationGroup };
+export const notify = createNotifier<NotificationSchema>()
+export const Notification = defineNotificationComponent<NotificationSchema>()
+export { NotificationGroup }
 ```
 
 ```vue
 <script setup lang="ts">
-  import { notify, Notification, NotificationGroup } from "./notiwind.ts";
+import { notify, Notification, NotificationGroup } from './notiwind.ts'
 
-  notify({
-    title: "title",
-    text: "text",
-  }, 4000);
+notify(
+  {
+    title: 'title',
+    text: 'text',
+  },
+  4000,
+)
 </script>
 
 <template>
-<NotificationGroup>
-  <Notification v-slot="{ notifications }">
-   <!-- Here you have typed `notifications` -->
-  </Notification>
-</NotificationGroup>
+  <NotificationGroup>
+    <Notification v-slot="{ notifications }">
+      <!-- Here you have typed `notifications` -->
+    </Notification>
+  </NotificationGroup>
 </template>
 ```
 
 ## TODO
 
-* Add tests
+- Add tests
 
 ## Contributing
 

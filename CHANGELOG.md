@@ -1,11 +1,20 @@
 # CHANGELOG
 
+<a name="2.1.0"></a>
+
+### 2.1.0 (2024-12-10)
+
+- Update core and example dependencies ([#51](https://github.com/emmanuelsw/notiwind/pull/51))
+- New linter/formatting configuration with ESlint v9 ([#51](https://github.com/emmanuelsw/notiwind/pull/51))
+- Use pnpm instead of yarn ([#51](https://github.com/emmanuelsw/notiwind/pull/51))
+- NotificationGroup: fix extraneous non-props warning in Vue 3.5+ ([#49](https://github.com/emmanuelsw/notiwind/pull/49)). Thanks [Nebual](https://github.com/Nebual)!
+
 <a name="2.0.2"></a>
 
 ### 2.0.2 (2023-07-04)
 
 - Prevent notification to be closed if hovered ([#38](https://github.com/emmanuelsw/notiwind/pull/38)). Thanks [Joao-VictorF](https://github.com/Joao-VictorF)!
-- Immediate effect max notifications ([#41](https://github.com/emmanuelsw/notiwind/pull/41)). Thanks [Tamas-hi](Tamas-hi)!
+- Immediate effect max notifications ([#41](https://github.com/emmanuelsw/notiwind/pull/41)). Thanks [Tamas-hi](https://github.com/Tamas-hi)!
 - Update core and example dependencies
 
 <a name="2.0.1"></a>

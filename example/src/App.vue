@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex flex-col justify-center min-h-screen bg-gray-200 align-center"
-  >
+  <div class="flex flex-col justify-center min-h-screen bg-gray-200 align-center">
     <div class="flex items-center justify-center flex-1 space-x-5">
       <button
         class="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none focus:ring"
@@ -30,9 +28,7 @@
     </div>
 
     <NotificationGroup group="top">
-      <div
-        class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
-      >
+      <div class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none">
         <div class="w-full max-w-sm">
           <Notification
             v-slot="{ notifications, close }"
@@ -107,9 +103,7 @@
     </NotificationGroup>
 
     <NotificationGroup group="top-with-hover">
-      <div
-        class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none"
-      >
+      <div class="fixed inset-0 flex items-start justify-start p-6 px-4 py-6 pointer-events-none">
         <div class="w-full max-w-sm">
           <Notification
             v-slot="{ notifications, close, hovering }"
@@ -125,7 +119,7 @@
             <div
               v-for="notification in notifications"
               :key="notification.id"
-              class="w-full max-w-sm mt-4 overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5"
+              class="w-full max-w-sm mt-4 overflow-hidden rounded-lg shadow-lg pointer-events-auto bg-amber-50 ring-1 ring-black ring-opacity-5"
               @mouseover="hovering(notification.id, true)"
               @mouseleave="hovering(notification.id, false)"
             >
@@ -133,18 +127,17 @@
                 <div class="flex items-start">
                   <div class="shrink-0">
                     <svg
-                      class="w-6 h-6 text-green-400"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
+                      stroke-width="1.5"
                       stroke="currentColor"
-                      aria-hidden="true"
+                      class="size-6 text-amber-400"
                     >
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
                       />
                     </svg>
                   </div>
@@ -158,7 +151,7 @@
                   </div>
                   <div class="flex ml-4 shrink-0">
                     <button
-                      class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                      class="inline-flex text-gray-400 rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                       @click="close(notification.id)"
                     >
                       <span class="sr-only">Close</span>
@@ -220,9 +213,7 @@
 
               <div class="px-4 py-2 -mx-3">
                 <div class="mx-3">
-                  <span class="font-semibold text-red-500">{{
-                    notification.title
-                  }}</span>
+                  <span class="font-semibold text-red-500">{{ notification.title }}</span>
                   <p class="text-sm text-gray-600">
                     {{ notification.text }}
                   </p>
@@ -237,56 +228,56 @@
 </template>
 
 <script setup lang="ts">
-import { notify, Notification, NotificationGroup } from "./notiwind";
+import { notify, Notification, NotificationGroup } from './notiwind'
 
 function onClickTop() {
   notify(
     {
-      group: "top",
-      title: "Success",
-      text: "Your account was created 👌",
+      group: 'top',
+      title: 'Success',
+      text: 'Your account was created 👌',
     },
-    4000
-  );
+    4000,
+  )
 }
 
 function onClickTopWithHover() {
   notify(
     {
-      group: "top-with-hover",
-      title: "Success",
-      text: "If you hover me I'll not disapper 👌",
+      group: 'top-with-hover',
+      title: 'Warning',
+      text: "If you hover me I'll not disappear.",
     },
-    4000
-  );
+    4000,
+  )
 }
 
 function onClickTopInfinite() {
   notify(
     {
-      group: "top",
-      title: "Success",
+      group: 'top',
+      title: 'Success',
       text: "I'm not going to disappear until you close me 😎",
     },
-    -1
-  );
- }
+    -1,
+  )
+}
 
 function onClickBot() {
   notify(
     {
-      group: "bottom",
-      title: "Error",
-      text: "Invalid username or password!",
+      group: 'bottom',
+      title: 'Error',
+      text: 'Invalid username or password!',
     },
-    4000
-  );
+    4000,
+  )
 }
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

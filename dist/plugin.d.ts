@@ -1,4 +1,5 @@
-import type { App } from "vue";
+import { App } from 'vue';
+
 declare function install(app: App): void;
 declare const plugin: {
     install: typeof install;

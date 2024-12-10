@@ -1,2 +1,1 @@
-// eslint-disable-next-line import/prefer-default-export
-export const CONTEXT_KEY = "context";
+export const CONTEXT_KEY = 'context'

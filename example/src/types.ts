@@ -1,4 +1,4 @@
 export type NotificationSchema = {
-  title: string;
-  text: string;
-};
+  title: string
+  text: string
+}

@@ -1,4 +1,5 @@
-import { Notification } from "./types";
+import { Notification } from './types';
+
 type Events = {
     notify: {
         notification: Notification;
@@ -11,5 +12,5 @@ type Events = {
         timeout?: number;
     };
 };
-declare const events: import("mitt").Emitter<Events>;
+declare const events: import('mitt').Emitter<Events>;
 export default events;

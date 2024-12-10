@@ -8,8 +8,5 @@
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.vue"
-  ]
+  "include": ["./src/**/*.ts", "./src/**/*.vue"]
 }

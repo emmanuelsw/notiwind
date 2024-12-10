@@ -5,7 +5,7 @@ export type Notification<T extends NotificationSchema = NotificationSchema> = {
 } & T;
 export type Context = {
     group?: string;
-    position?: "top" | "bottom";
+    position?: 'top' | 'bottom';
 };
 export type ExtractComponentProps<TComponent> = TComponent extends new () => {
     $props: infer P;

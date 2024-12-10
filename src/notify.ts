@@ -1,5 +1,5 @@
-import createNotifier from "./createNotifier";
+import createNotifier from './createNotifier'
 
-const notify = createNotifier();
+const notify = createNotifier()
 
-export default notify;
+export default notify
